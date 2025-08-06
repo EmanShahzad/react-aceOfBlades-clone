@@ -1,0 +1,11 @@
+.mySection {
+  font-family: "Oswald", sans-serif;
+}
+.bg-image {
+  background-image: url("https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-blades-main-background-knife-1-1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  z-index: -1;
+}

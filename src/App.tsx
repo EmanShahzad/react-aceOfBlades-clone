@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import NavBar from "./components/NavBar";
+import IntroSection from "./components/IntroSection";
+import KnivesInfo from "./components/KnivesInfo";
+import WhoAreWe from "./components/WhoAreWe";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <NavBar />
+      <IntroSection />
+      <div className="position-absolute" style={{ top: "160%" }}>
+        <KnivesInfo />
+        <WhoAreWe />
+      </div>
     </div>
   );
 }

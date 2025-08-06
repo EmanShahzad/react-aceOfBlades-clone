@@ -1,0 +1,9 @@
+.headerHeight {
+  max-height: 7vh;
+  min-height: 7vh;
+}
+
+.headerImages {
+  max-width: 20px;
+  filter: invert(100%);
+}
