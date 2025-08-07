@@ -5,6 +5,9 @@ import KnivesInfo from "./components/KnivesInfo";
 import WhoAreWe from "./components/WhoAreWe";
 import OurCrafter from "./components/OurCrafter";
 import TheHistory from "./components/TheHistory";
+import ItemsOnSale from "./components/ItemsOnSale";
+import Footer from "./components/Footer";
+import Features from "./components/Features";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <WhoAreWe />
         <OurCrafter />
         <TheHistory />
+        <ItemsOnSale />
+        <Features />
+        <Footer />
       </div>
     </div>
   );
