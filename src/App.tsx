@@ -3,6 +3,8 @@ import NavBar from "./components/NavBar";
 import IntroSection from "./components/IntroSection";
 import KnivesInfo from "./components/KnivesInfo";
 import WhoAreWe from "./components/WhoAreWe";
+import OurCrafter from "./components/OurCrafter";
+import TheHistory from "./components/TheHistory";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <div className="position-absolute" style={{ top: "160%" }}>
         <KnivesInfo />
         <WhoAreWe />
+        <OurCrafter />
+        <TheHistory />
       </div>
     </div>
   );

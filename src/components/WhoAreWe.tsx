@@ -37,7 +37,7 @@ function WhoAreWe() {
             wild terrain or for the collection in the glass case.
           </div>
           <div className="d-flex justify-content-evenly gap-4 w-100 mt-5">
-            <div className="d-flex flex-column gap-5 align-items-center w-25">
+            <div className="d-flex flex-column gap-3 align-items-center w-25">
               <div
                 className="rounded-circle h-50 bg-black d-flex justify-content-center align-items-center p-2"
                 style={{ width: "36%" }}
@@ -48,11 +48,14 @@ function WhoAreWe() {
                   alt=""
                 />
               </div>
-              <div className="fs-5 fw-normal d-flex text-center">
+              <div
+                className="fs-5 fw-normal d-flex text-center"
+                style={{ letterSpacing: "2px" }}
+              >
                 Real damascus steel
               </div>
             </div>
-            <div className="d-flex flex-column gap-5 align-items-center w-25 gap-3">
+            <div className="d-flex flex-column gap-3 align-items-center w-25 gap-3">
               <div
                 className="rounded-circle h-50 bg-black d-flex justify-content-center align-items-center p-2"
                 style={{ width: "36%" }}
@@ -63,9 +66,11 @@ function WhoAreWe() {
                   alt=""
                 />
               </div>
-              <div className="fs-5 fw-normal">handcrafted</div>
+              <div className="fs-5 fw-normal" style={{ letterSpacing: "2px" }}>
+                handcrafted
+              </div>
             </div>
-            <div className="d-flex flex-column gap-5 align-items-center w-25">
+            <div className="d-flex flex-column gap-3 align-items-center w-25">
               <div
                 className="rounded-circle h-50 bg-black d-flex justify-content-center align-items-center p-2"
                 style={{ width: "36%" }}
@@ -76,7 +81,9 @@ function WhoAreWe() {
                   alt=""
                 />
               </div>
-              <div className="fs-5 fw-normal">uniquely made</div>
+              <div className="fs-5 fw-normal" style={{ letterSpacing: "2px" }}>
+                uniquely made
+              </div>
             </div>
           </div>
         </div>
