@@ -2,10 +2,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styling/header.css";
 function Header() {
   return (
-    <div className="bg-black text-white" style={{ zIndex: "300" }}>
+    <div
+      className="bg-black text-white"
+      style={{
+        zIndex: "300",
+        fontFamily: "Roboto, sans-serif",
+        letterSpacing: "3px",
+        fontSize: "13px",
+      }}
+    >
       <div className="Header headerHeight d-flex justify-content-end  mx-5 ps-5 bg-black">
         <div className="d-flex justify-content-between align-items-center w-75 headerHeight">
-          <span className="mx-5 ps-5">
+          <span className="mx-5 ps-5 fw-bold">
             FREE DELIVERY FOR ALL ORDERS OVER R1000
           </span>
           <span className="d-flex justify-space-between gap-2 align-items-center">
