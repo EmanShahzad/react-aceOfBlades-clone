@@ -8,6 +8,9 @@ import TheHistory from "./components/TheHistory";
 import ItemsOnSale from "./components/ItemsOnSale";
 import Footer from "./components/Footer";
 import Features from "./components/Features";
+import RecentItemsSlider from "./components/RecentItemsSlider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
@@ -22,6 +25,7 @@ function App() {
         <TheHistory />
         <ItemsOnSale />
         <Features />
+        <RecentItemsSlider />
         <Footer />
       </div>
     </div>
