@@ -11,34 +11,36 @@ function Header() {
         fontSize: "13px",
       }}
     >
-      <div className="Header d-flex justify-content-end  mx-5 ps-5 bg-black">
-        <div className="d-flex justify-content-between align-items-center w-75">
-          <span className="mx-5 ps-5 fw-bold py-2">
-            FREE DELIVERY FOR ALL ORDERS OVER R1000
-          </span>
-          <span className="d-flex justify-space-between gap-2 align-items-center">
-            <span>
-              <img
-                className="headerImages"
-                src="https://www.svgrepo.com/show/30508/facebook-square-social-logo.svg"
-                alt=""
-              />
+      <div className="container">
+        <div className="Header d-flex justify-content-end  mx-5 ps-5 bg-black">
+          <div className="d-flex justify-content-between align-items-center w-75">
+            <span className="mx-5 ps-5 fw-bold py-2">
+              FREE DELIVERY FOR ALL ORDERS OVER R1000
             </span>
-            <span>
-              <img
-                className="headerImages"
-                src="https://www.svgrepo.com/show/506668/instagram.svg"
-                alt=""
-              />
+            <span className="d-flex justify-space-between gap-2 align-items-center">
+              <span>
+                <img
+                  className="headerImages"
+                  src="https://www.svgrepo.com/show/30508/facebook-square-social-logo.svg"
+                  alt=""
+                />
+              </span>
+              <span>
+                <img
+                  className="headerImages"
+                  src="https://www.svgrepo.com/show/506668/instagram.svg"
+                  alt=""
+                />
+              </span>
+              <span>
+                <img
+                  className="headerImages"
+                  src="https://www.svgrepo.com/show/303280/whatsapp-glyph-black-logo.svg"
+                  alt=""
+                />
+              </span>
             </span>
-            <span>
-              <img
-                className="headerImages"
-                src="https://www.svgrepo.com/show/303280/whatsapp-glyph-black-logo.svg"
-                alt=""
-              />
-            </span>
-          </span>
+          </div>
         </div>
       </div>
     </div>

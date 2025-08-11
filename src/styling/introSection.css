@@ -1,11 +1,25 @@
-.mySection {
-  font-family: "Oswald", sans-serif;
-}
 .bg-image {
-  background-image: url("https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-blades-main-background-knife-1-1.jpg");
-  background-size: cover;
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url(https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-blades-main-background-knife-1-1.jpg);
+  background-attachment: fixed;
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  z-index: -1;
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  position: relative;
+}
+
+.bg-image * {
+  position: relative;
+  z-index: 2;
 }

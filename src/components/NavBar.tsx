@@ -2,7 +2,7 @@ import "../styling/navbar.css";
 function NavBar() {
   return (
     <div
-      className="sticky-top text-uppercase"
+      className="sticky-top text-uppercase bg-white"
       style={{ zIndex: "100" }}
     >
       <div className="container">

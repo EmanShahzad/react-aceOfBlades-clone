@@ -18,16 +18,14 @@ function App() {
       <Header />
       <NavBar />
       <IntroSection />
-      <div className="position-absolute" style={{ top: "160%" }}>
-        <KnivesInfo />
-        <WhoAreWe />
-        <OurCrafter />
-        <TheHistory />
-        <ItemsOnSale />
-        <Features />
-        <RecentItemsSlider />
-        <Footer />
-      </div>
+      <KnivesInfo />
+      <WhoAreWe />
+      <OurCrafter />
+      <TheHistory />
+      <ItemsOnSale />
+      <Features />
+      <RecentItemsSlider />
+      <Footer />
     </div>
   );
 }
