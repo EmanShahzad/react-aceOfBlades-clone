@@ -10,7 +10,7 @@ function IntroSection() {
       className="scrollspy-example zn-1 mySection bg-image"
     >
       <div className="container">
-        <div className="w-100 h-auto text-white align-items-end d-flex flex-column justify-content-between gap-3 text-end p-5 text-uppercase">
+        <div className="w-100 h-auto text-white align-items-end d-flex flex-column justify-content-between gap-3 text-end text-uppercase">
           <div className="fw-bolder pt-5" style={{ fontSize: "4.23529rem" }}>
             The crafters of life
           </div>
