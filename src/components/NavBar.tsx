@@ -6,7 +6,7 @@ function NavBar() {
       style={{ zIndex: "100" }}
     >
       <div className="container">
-        <div className="d-flex gap-4 justify-content-between align-items-center">
+        <div className="d-flex gap-4 justify-content-between align-items-center px-5 py-2">
           <div className="d-flex my-2 flex-column justify-content-center align-items-center">
             <img
               className=""
@@ -21,7 +21,10 @@ function NavBar() {
           <div className="">
             <nav className="navbar ">
               <div className="container-fluid">
-                <ul className="navbar-nav flex-row gap-2 fw-bold">
+                <ul
+                  className="navbar-nav flex-row gap-2 fw-bold"
+                  style={{ fontFamily: "Roboto" }}
+                >
                   <li className="nav-item me-3">
                     <a className="nav-link" href="#">
                       Home

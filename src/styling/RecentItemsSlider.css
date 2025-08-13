@@ -1,7 +1,5 @@
 .recent-items-swiper {
-  max-width: 90% !important;
-  height: 120vh;
-  padding: 5%;
+  /* max-width: 90% !important; */
   overflow: hidden !important;
 }
 
@@ -32,4 +30,9 @@
   background: #f8f9fa;
   text-align: center;
   height: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: black; /* Any color you want */
 }

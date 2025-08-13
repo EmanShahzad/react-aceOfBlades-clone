@@ -1,30 +1,21 @@
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
-import IntroSection from "./components/IntroSection";
-import KnivesInfo from "./components/KnivesInfo";
-import WhoAreWe from "./components/WhoAreWe";
-import OurCrafter from "./components/OurCrafter";
-import TheHistory from "./components/TheHistory";
-import ItemsOnSale from "./components/ItemsOnSale";
 import Footer from "./components/Footer";
-import Features from "./components/Features";
-import RecentItemsSlider from "./components/RecentItemsSlider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./views/Home";
+import Cart from "./views/Cart";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <NavBar />
-      <IntroSection />
-      <KnivesInfo />
-      <WhoAreWe />
-      <OurCrafter />
-      <TheHistory />
-      <ItemsOnSale />
-      <Features />
-      <RecentItemsSlider />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
       <Footer />
     </div>
   );

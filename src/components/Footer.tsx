@@ -32,7 +32,8 @@ function Footer() {
         <p className="text-center fs-6">Copyright © 2025 THE ACE OF BLADES</p>{" "}
       </div>
       <p className="text-center p-4">
-        Developed and maintained by by : Biographix Web and Media
+        <span className="text-secondary">Developed and maintained by by :</span>{" "}
+        Biographix Web and Media
       </p>
     </footer>
   );

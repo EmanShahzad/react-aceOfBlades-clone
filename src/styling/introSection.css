@@ -4,13 +4,14 @@
       rgba(0, 0, 0, 0.45),
       rgba(0, 0, 0, 0.45)
     ),
-    url('https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-blades-main-background-knife-1-1.jpg');
+    url("https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-blades-main-background-knife-1-1.jpg");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   object-fit: cover;
 
+  font-family: "Oswald", sans-serif;
   /* height: 100vh; */
 
   /* display: flex;
