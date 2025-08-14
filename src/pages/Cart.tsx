@@ -1,4 +1,4 @@
-import CartComponent from "../components/CartComponent";
+import CartComponent from "../cart/CartComponent";
 import TitleSection from "../components/TitleSection";
 
 function Cart() {
