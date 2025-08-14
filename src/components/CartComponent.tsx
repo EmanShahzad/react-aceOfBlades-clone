@@ -69,14 +69,14 @@ function CartComponent() {
             </thead>
             <tbody>
               <tr className="align-middle">
-                <td>Subtotal</td>
+                <td className="py-4">Subtotal</td>
                 <td>R1,980.00</td>
               </tr>
               <tr className="align-middle">
-                <td>Shipping</td>
+                <td className="py-4">Shipping</td>
                 <td>
                   <div>
-                    <div className="form-check">
+                    <div className="form-check py-2">
                       <input
                         className="form-check-input"
                         type="radio"
@@ -85,7 +85,7 @@ function CartComponent() {
                       />
                       <label className="form-check-label">Free shipping</label>
                     </div>
-                    <div className="form-check">
+                    <div className="form-check py-2">
                       <input
                         className="form-check-input"
                         type="radio"
@@ -96,18 +96,20 @@ function CartComponent() {
                         Flat rate: R75.00 <br /> Shipping to Northern Cape
                       </label>
                     </div>
-                    <span className="btn fw-medium ps-4">Change address</span>
+                    <span className="btn fw-medium ps-4 py-2">
+                      Change address
+                    </span>
                   </div>
                 </td>
               </tr>
               <tr className="align-middle">
-                <td>Total</td>
+                <td className="py-3">Total</td>
                 <td>R1,980.00</td>
               </tr>
             </tbody>
           </table>
           <div className="w-100">
-            <div>Have a coupon?</div>
+            <div className="py-2">Have a coupon?</div>
             <button className="btn btn-dark rounded-0 py-4 w-100 my-2">
               Proceed to checkout
             </button>
