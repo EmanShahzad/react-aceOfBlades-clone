@@ -4,7 +4,7 @@ import TitleSection from "../components/TitleSection";
 function Cart() {
   return (
     <>
-      <TitleSection />
+      <TitleSection title="Cart" />
       <CartComponent />
     </>
   );

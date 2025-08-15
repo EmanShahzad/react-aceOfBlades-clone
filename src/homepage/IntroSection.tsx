@@ -1,4 +1,4 @@
-import "../styling/introSection.css";
+import "./introSection.css";
 
 function IntroSection() {
   return (

@@ -5,7 +5,7 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../styling//RecentItemsSlider.css";
+import "./RecentItemsSlider.css";
 
 export default function RecentItemsSlider() {
   const slides = [

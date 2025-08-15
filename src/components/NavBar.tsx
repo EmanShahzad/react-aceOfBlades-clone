@@ -1,4 +1,5 @@
 import "../styling/navbar.css";
+import { NavLink } from "react-router-dom";
 function NavBar() {
   return (
     <div
@@ -26,9 +27,9 @@ function NavBar() {
                   style={{ fontFamily: "Roboto" }}
                 >
                   <li className="nav-item me-3">
-                    <a className="nav-link" href="#">
+                    <NavLink className="nav-link" to="/">
                       Home
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item dropdown me-3">
                     <a
@@ -74,14 +75,14 @@ function NavBar() {
                     </a>
                   </li>
                   <li className="nav-item  me-3">
-                    <a className="nav-link" href="#">
+                    <NavLink className="nav-link" to="/cart">
                       Cart
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item  me-3">
-                    <a className="nav-link" href="#">
+                    <NavLink className="nav-link" to="/checkout">
                       CheckOut
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item  me-3">
                     <a className="nav-link" href="#">
