@@ -350,10 +350,10 @@ function ProductDetailsComponent() {
             className="d-flex justify-content-between align-items-center position-absolute top-0 end-0"
             style={{ width: "70px" }}
           >
-            <div className="rounded-circle bg-black text-white p-2">
+            <div className="rounded-circle bg-black text-white p-2 py-1">
               <i className="bi bi-chevron-left"></i>
             </div>
-            <div className="rounded-circle bg-black text-white p-2">
+            <div className="rounded-circle bg-black text-white p-2 py-1">
               <i className="bi bi-chevron-right"></i>
             </div>
           </div>
