@@ -2,7 +2,7 @@ import "../styling/TitleSection.css";
 
 function TitleSection({ title }: { title: string }) {
   return (
-    <div className="scrollspy-example zn-1 bg-image">
+    <div className="scrollspy-example bg-image">
       <div className="container p-5">
         <div
           className="w-100 text-white text-center text-uppercase"

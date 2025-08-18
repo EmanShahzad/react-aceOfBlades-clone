@@ -1,15 +1,113 @@
+import { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 function ProductDetailsComponent() {
+  let [productQuantity, setProductQuantity] = useState<number>(1);
+  let [selectedImage, setSelectedImage] = useState<string>(
+    "https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
+  );
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const newQuantity = Number(value);
+    setProductQuantity(newQuantity);
+  };
   return (
     <div>
       <div className="container">
         <div className="position-relative">
           <div className="d-flex justify-content-center align-items-start gap-2 p-3 my-3">
             <div>
-              <img
-                style={{ width: "350px" }}
-                src="https://theaceofblades.co.za/wp-content/uploads/IMG_5745-600x600.jpg"
-                alt=""
-              />
+              <div>
+                <img style={{ width: "350px" }} src={selectedImage} alt="" />
+              </div>
+              <div>
+                <Swiper
+                  spaceBetween={12}
+                  slidesPerView={4}
+                  onSlideChange={() => console.log("slide change")}
+                  style={{ maxWidth: "380px" }}
+                  className="d-flex m-0 p-2"
+                >
+                  <SwiperSlide
+                    className={
+                      selectedImage ===
+                      "https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
+                        ? "border border-dark border-2"
+                        : ""
+                    }
+                  >
+                    <img
+                      className="w-100"
+                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
+                      alt=""
+                      onClick={() => {
+                        setSelectedImage(
+                          "https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
+                        );
+                      }}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide
+                    className={
+                      selectedImage ===
+                      "https://theaceofblades.co.za/wp-content/uploads/IMG_5069.jpg"
+                        ? "border border-dark border-2"
+                        : ""
+                    }
+                  >
+                    <img
+                      className="w-100"
+                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5069.jpg"
+                      alt=""
+                      onClick={() => {
+                        setSelectedImage(
+                          "https://theaceofblades.co.za/wp-content/uploads/IMG_5069.jpg"
+                        );
+                      }}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide
+                    className={
+                      selectedImage ===
+                      "https://theaceofblades.co.za/wp-content/uploads/IMG_5075-1024x1024.jpg"
+                        ? "border border-dark border-2"
+                        : ""
+                    }
+                  >
+                    <img
+                      className="w-100"
+                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5075-1024x1024.jpg"
+                      alt=""
+                      onClick={() => {
+                        setSelectedImage(
+                          "https://theaceofblades.co.za/wp-content/uploads/IMG_5075-1024x1024.jpg"
+                        );
+                      }}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide
+                    className={
+                      selectedImage ===
+                      "https://theaceofblades.co.za/wp-content/uploads/IMG_5087.jpg"
+                        ? "border border-dark border-2"
+                        : ""
+                    }
+                  >
+                    <img
+                      className="w-100"
+                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5087.jpg"
+                      alt=""
+                      onClick={() => {
+                        setSelectedImage(
+                          "https://theaceofblades.co.za/wp-content/uploads/IMG_5087.jpg"
+                        );
+                      }}
+                    />
+                  </SwiperSlide>
+                </Swiper>
+              </div>
             </div>
             <div className="w-75 d-flex flex-column py-2 px-4">
               <div
@@ -48,13 +146,41 @@ function ProductDetailsComponent() {
                 className="d-flex gap-4 px-2 py-3"
                 style={{ color: "#4B4F58" }}
               >
-                <div className="row border">
-                  <span className="col">-</span>
-                  <span className="col border-start border-end">1</span>
-                  <span className="col">+</span>
+                <div
+                  className="d-flex border justify-content-around align-items-center"
+                  style={{ width: "150px" }}
+                >
+                  <button
+                    className="text-center btn rounded-0 w-100"
+                    onClick={() => {
+                      if (productQuantity > 1)
+                        setProductQuantity(--productQuantity);
+                    }}
+                  >
+                    -
+                  </button>
+                  <span className="w-auto border-start border-end text-center">
+                    <input
+                      className="border-0 shadow-none text-center p-1"
+                      style={{ width: "50px" }}
+                      type="number"
+                      name="quantity"
+                      id="order-quantity"
+                      value={productQuantity}
+                      onChange={handleChange}
+                    />
+                  </span>
+                  <button
+                    className="text-center btn rounded-0 w-100"
+                    onClick={() => {
+                      setProductQuantity(++productQuantity);
+                    }}
+                  >
+                    +
+                  </button>
                 </div>
                 <div className="px-3">
-                  <button className="btn btn-dark rounded-0 px-3">
+                  <button className="btn btn-dark rounded-0 px-3 py-2">
                     Add to cart
                   </button>
                 </div>
