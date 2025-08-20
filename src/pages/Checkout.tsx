@@ -1,5 +1,5 @@
 import CheckoutComponent from "../components/checkout/CheckouComponent";
-import TitleSection from "../components/TitleSection";
+import TitleSection from "../components/TitleComponent/TitleSection";
 
 function Checkout() {
   return (

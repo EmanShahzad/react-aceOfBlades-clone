@@ -1,0 +1,42 @@
+[
+  {
+    "id": "uncategorized",
+    "name": "UNCATEGORIZED",
+    "image": "https://source.unsplash.com/800x800/?knife&sig=10"
+  },
+  {
+    "id": "collectors",
+    "name": "COLLECTORS AND LIMITED-EDITION KNIVES",
+    "image": "https://source.unsplash.com/800x800/?damascus-knife&sig=11"
+  },
+  {
+    "id": "fixed-blade",
+    "name": "FIXED BLADE KNIVES",
+    "image": "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=12"
+  },
+  {
+    "id": "folding",
+    "name": "FOLDING KNIVES",
+    "image": "https://source.unsplash.com/800x800/?folding-knife&sig=13"
+  },
+  {
+    "id": "key-rings",
+    "name": "KEY RINGS",
+    "image": "https://source.unsplash.com/800x800/?keychain-knife&sig=14"
+  },
+  {
+    "id": "kitchen",
+    "name": "KITCHEN AND CHEF KNIVES",
+    "image": "https://source.unsplash.com/800x800/?chef-knife&sig=15"
+  },
+  {
+    "id": "knife-care",
+    "name": "KNIFE CARE",
+    "image": "https://source.unsplash.com/800x800/?knife-sharpening&sig=16"
+  },
+  {
+    "id": "straight-razors",
+    "name": "STRAIGHT RAZORS",
+    "image": "https://source.unsplash.com/800x800/?straight-razor&sig=17"
+  }
+]

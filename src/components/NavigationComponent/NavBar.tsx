@@ -1,4 +1,4 @@
-import "../styling/navbar.css";
+import "./navbar.css";
 import { NavLink } from "react-router-dom";
 function NavBar() {
   return (
@@ -97,12 +97,15 @@ function NavBar() {
             <button className="btn">
               <i className="bi bi-person-circle fs-4"></i>
             </button>
-            <button className="btn border-dark border-2 rounded-0 position-relative">
+            <NavLink
+              className="btn border-dark border-2 rounded-0 position-relative"
+              to="/cart"
+            >
               <i className="bi bi-cart-fill fs-4"></i>
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-black">
-                1<span className="visually-hidden">unread messages</span>
+                1<span className="visually-hidden">cart items count</span>
               </span>
-            </button>
+            </NavLink>
           </div>
         </div>
       </div>

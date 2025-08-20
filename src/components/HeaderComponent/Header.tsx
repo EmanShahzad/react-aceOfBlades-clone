@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styling/header.css";
+import "./header.css";
 function Header() {
   return (
     <div

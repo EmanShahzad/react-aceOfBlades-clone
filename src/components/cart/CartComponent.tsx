@@ -1,4 +1,16 @@
+import { useContext } from "react";
+import { CartContext } from "../CartManager";
+
 function CartComponent() {
+  const CartItems = useContext(CartContext);
+  if (!CartItems) throw new Error("error");
+  let { productQuantity, setProductQuantity } = CartItems;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const newQuantity = Number(value);
+    setProductQuantity(newQuantity);
+  };
   return (
     <section>
       <div className="container">
@@ -46,10 +58,38 @@ function CartComponent() {
                   </td>
                   <td>R990.00</td>
                   <td>
-                    <div className="row border w-100">
-                      <span className="col">-</span>
-                      <span className="col border-start border-end">1</span>
-                      <span className="col">+</span>
+                    <div
+                      className="d-flex border justify-content-around align-items-center"
+                      style={{ width: "150px" }}
+                    >
+                      <button
+                        className="text-center btn rounded-0 w-100"
+                        onClick={() => {
+                          if (productQuantity > 1)
+                            setProductQuantity(--productQuantity);
+                        }}
+                      >
+                        -
+                      </button>
+                      <span className="w-auto border-start border-end text-center">
+                        <input
+                          className="border-0 shadow-none text-center p-1"
+                          style={{ width: "50px" }}
+                          type="number"
+                          name="quantity"
+                          id="order-quantity"
+                          value={productQuantity}
+                          onChange={handleChange}
+                        />
+                      </span>
+                      <button
+                        className="text-center btn rounded-0 w-100"
+                        onClick={() => {
+                          setProductQuantity(++productQuantity);
+                        }}
+                      >
+                        +
+                      </button>
                     </div>
                   </td>
                   <td>R990.00</td>
@@ -116,7 +156,12 @@ function CartComponent() {
             </table>
             <div className="w-100">
               <div className="py-2">Have a coupon?</div>
-              <button className="btn btn-dark rounded-0 py-4 w-100 my-2">
+              <button
+                className="btn btn-dark rounded-0 py-4 w-100 my-2"
+                onClick={() => {
+                  console.log(productQuantity);
+                }}
+              >
                 Proceed to checkout
               </button>
             </div>

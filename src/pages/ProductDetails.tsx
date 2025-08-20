@@ -1,6 +1,6 @@
-import TitleSection from "../components/TitleSection";
-import RelatedProducts from "../components/productDetails/RelatedProducts";
-import ProductDetailsComponent from "../components/productDetails/productDetailsComponent";
+import TitleSection from "../components/TitleComponent/TitleSection";
+import RelatedProducts from "../components/productDetailsPage/RelatedProducts";
+import ProductDetailsComponent from "../components/productDetailsPage/productDetailsComponent";
 
 function ProductDetails() {
   return (

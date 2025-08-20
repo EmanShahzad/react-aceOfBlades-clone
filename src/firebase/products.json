@@ -1,0 +1,962 @@
+[
+  {
+    "name": "All-Purpose Knife",
+    "price": 72.96,
+    "isOnSale": false,
+    "stock": 8,
+    "categoryId": "uncategorized",
+    "specifications": [
+      "Hidden Tang",
+      "Handle: Walnut Wood",
+      "Corrosion Resistant",
+      "Handle: G10",
+      "Spine Thickness: 3 mm"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?knife&sig=9675"]
+  },
+  {
+    "name": "Compact Utility Knife",
+    "price": 56.64,
+    "isOnSale": true,
+    "stock": 8,
+    "categoryId": "uncategorized",
+    "specifications": ["Full Tang", "Hidden Tang", "Finish: Stonewashed"],
+    "images": ["https://source.unsplash.com/800x800/?knife&sig=9196"],
+    "newPrice": 42.48
+  },
+  {
+    "name": "Outdoor Edge Knife",
+    "price": 39.91,
+    "isOnSale": false,
+    "stock": 74,
+    "categoryId": "uncategorized",
+    "specifications": [
+      "Hidden Tang",
+      "Grind: Hollow",
+      "Blade Length: 3.5 in",
+      "HRC 58-60",
+      "Blade: 8Cr13MoV",
+      "Handle: Micarta"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife&sig=5575",
+      "https://source.unsplash.com/800x800/?knife&sig=4553",
+      "https://source.unsplash.com/800x800/?knife&sig=2548",
+      "https://source.unsplash.com/800x800/?knife&sig=3528"
+    ]
+  },
+  {
+    "name": "General Use Knife",
+    "price": 96.79,
+    "isOnSale": false,
+    "stock": 48,
+    "categoryId": "uncategorized",
+    "specifications": [
+      "Blade: Damascus Steel",
+      "Lock: Frame Lock",
+      "Handle: G10"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife&sig=5636",
+      "https://source.unsplash.com/800x800/?knife&sig=9892",
+      "https://source.unsplash.com/800x800/?knife&sig=4334"
+    ]
+  },
+  {
+    "name": "Multi-Task Knife",
+    "price": 85.53,
+    "isOnSale": false,
+    "stock": 63,
+    "categoryId": "uncategorized",
+    "specifications": [
+      "Lock: Frame Lock",
+      "Blade: Damascus Steel",
+      "Weight: 120g"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife&sig=5926",
+      "https://source.unsplash.com/800x800/?knife&sig=9460",
+      "https://source.unsplash.com/800x800/?knife&sig=3151"
+    ]
+  },
+  {
+    "name": "Everyday Blade",
+    "price": 77.84,
+    "isOnSale": true,
+    "stock": 10,
+    "categoryId": "uncategorized",
+    "specifications": [
+      "Dishwasher Safe (Handwash Recommended)",
+      "Sheath: Leather",
+      "Blade: Damascus Steel",
+      "Hidden Tang"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?knife&sig=6228"],
+    "newPrice": 62.27
+  },
+  {
+    "name": "Universal Knife",
+    "price": 45.85,
+    "isOnSale": false,
+    "stock": 51,
+    "categoryId": "uncategorized",
+    "specifications": [
+      "Lock: Liner Lock",
+      "Full Tang",
+      "Spine Thickness: 3 mm",
+      "HRC 58-60"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?knife&sig=9981"]
+  },
+  {
+    "name": "Damascus Hunter",
+    "price": 370.49,
+    "isOnSale": false,
+    "stock": 73,
+    "categoryId": "collectors",
+    "specifications": [
+      "Handle: Micarta",
+      "Grind: Hollow",
+      "Lock: Frame Lock",
+      "HRC 58-60"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=5314",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=917"
+    ]
+  },
+  {
+    "name": "Limited Edition Bowie",
+    "price": 248.71,
+    "isOnSale": false,
+    "stock": 9,
+    "categoryId": "collectors",
+    "specifications": [
+      "Lock: Frame Lock",
+      "HRC 58-60",
+      "Blade: Damascus Steel",
+      "Full Tang",
+      "Blade Length: 3.5 in"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=3484",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=8180",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=6483"
+    ]
+  },
+  {
+    "name": "Mosaic Damascus Folder",
+    "price": 445.4,
+    "isOnSale": false,
+    "stock": 63,
+    "categoryId": "collectors",
+    "specifications": [
+      "HRC 58-60",
+      "Handle: Walnut Wood",
+      "Hidden Tang",
+      "Corrosion Resistant"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=9578",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=7020",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=9561"
+    ]
+  },
+  {
+    "name": "Artisan Carved Handle",
+    "price": 299.82,
+    "isOnSale": false,
+    "stock": 33,
+    "categoryId": "collectors",
+    "specifications": [
+      "Finish: Stonewashed",
+      "Finish: Satin",
+      "Blade: Damascus Steel",
+      "Dishwasher Safe (Handwash Recommended)"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?damascus-knife&sig=1797"]
+  },
+  {
+    "name": "Antique Finish Dagger",
+    "price": 225.85,
+    "isOnSale": false,
+    "stock": 25,
+    "categoryId": "collectors",
+    "specifications": [
+      "Blade Length: 8 in",
+      "Blade: Damascus Steel",
+      "Lock: Frame Lock",
+      "Non-slip Handle",
+      "Dishwasher Safe (Handwash Recommended)",
+      "Grind: Hollow"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=9065",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=189",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=1877"
+    ]
+  },
+  {
+    "name": "Exhibition Grade Kukri",
+    "price": 384.51,
+    "isOnSale": false,
+    "stock": 73,
+    "categoryId": "collectors",
+    "specifications": [
+      "Dishwasher Safe (Handwash Recommended)",
+      "Overall Length: 8.2 in",
+      "Sheath: Kydex",
+      "Handle: G10",
+      "Sheath: Leather"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=2592",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=7434",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=54",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=4316"
+    ]
+  },
+  {
+    "name": "Numbered Series Tanto",
+    "price": 471.57,
+    "isOnSale": false,
+    "stock": 27,
+    "categoryId": "collectors",
+    "specifications": [
+      "Overall Length: 8.2 in",
+      "Sheath: Leather",
+      "Finish: Stonewashed"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=2505",
+      "https://source.unsplash.com/800x800/?damascus-knife&sig=6127"
+    ]
+  },
+  {
+    "name": "Bushcraft Pro",
+    "price": 145.56,
+    "isOnSale": false,
+    "stock": 74,
+    "categoryId": "fixed-blade",
+    "specifications": ["Blade Length: 8 in", "Sheath: Kydex", "Finish: Satin"],
+    "images": [
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=1833"
+    ]
+  },
+  {
+    "name": "Tactical Tanto",
+    "price": 169.72,
+    "isOnSale": false,
+    "stock": 44,
+    "categoryId": "fixed-blade",
+    "specifications": [
+      "Blade: D2 Tool Steel",
+      "Hidden Tang",
+      "Blade Length: 3.5 in",
+      "Blade: Damascus Steel"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=7963"
+    ]
+  },
+  {
+    "name": "Field Utility",
+    "price": 153.32,
+    "isOnSale": false,
+    "stock": 73,
+    "categoryId": "fixed-blade",
+    "specifications": [
+      "Handle: Walnut Wood",
+      "Spine Thickness: 3 mm",
+      "Finish: Satin",
+      "Weight: 120g"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=4343",
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=8646"
+    ]
+  },
+  {
+    "name": "Survival Knife",
+    "price": 161.5,
+    "isOnSale": false,
+    "stock": 59,
+    "categoryId": "fixed-blade",
+    "specifications": [
+      "Weight: 120g",
+      "Dishwasher Safe (Handwash Recommended)",
+      "Corrosion Resistant",
+      "Non-slip Handle"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=5108",
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=6538"
+    ]
+  },
+  {
+    "name": "Camp Chopper",
+    "price": 179.3,
+    "isOnSale": false,
+    "stock": 52,
+    "categoryId": "fixed-blade",
+    "specifications": [
+      "Finish: Stonewashed",
+      "Grind: Hollow",
+      "Handle: G10",
+      "Hidden Tang",
+      "Spine Thickness: 3 mm",
+      "Blade: Damascus Steel"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=345",
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=9639",
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=9076"
+    ]
+  },
+  {
+    "name": "Skinner Pro",
+    "price": 68.37,
+    "isOnSale": false,
+    "stock": 33,
+    "categoryId": "fixed-blade",
+    "specifications": [
+      "Blade: Damascus Steel",
+      "Non-slip Handle",
+      "Overall Length: 8.2 in"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=3751"
+    ]
+  },
+  {
+    "name": "Outdoor Scout",
+    "price": 44.77,
+    "isOnSale": false,
+    "stock": 9,
+    "categoryId": "fixed-blade",
+    "specifications": [
+      "Blade: Damascus Steel",
+      "Finish: Stonewashed",
+      "Hidden Tang",
+      "HRC 58-60",
+      "Spine Thickness: 3 mm"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=3511",
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=8835",
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=2168",
+      "https://source.unsplash.com/800x800/?fixed-blade-knife&sig=9356"
+    ]
+  },
+  {
+    "name": "EDC Flipper",
+    "price": 104.91,
+    "isOnSale": false,
+    "stock": 36,
+    "categoryId": "folding",
+    "specifications": [
+      "Grind: Flat",
+      "Full Tang",
+      "Handle: G10",
+      "Non-slip Handle",
+      "Dishwasher Safe (Handwash Recommended)",
+      "Lock: Liner Lock"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?folding-knife&sig=6736",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=7652",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=888",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=1613"
+    ]
+  },
+  {
+    "name": "Pocket Lockback",
+    "price": 37.88,
+    "isOnSale": false,
+    "stock": 48,
+    "categoryId": "folding",
+    "specifications": ["Hidden Tang", "Full Tang", "Weight: 120g"],
+    "images": [
+      "https://source.unsplash.com/800x800/?folding-knife&sig=2297",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=6913",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=3007",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=4564"
+    ]
+  },
+  {
+    "name": "Gentleman's Folder",
+    "price": 90.14,
+    "isOnSale": false,
+    "stock": 14,
+    "categoryId": "folding",
+    "specifications": [
+      "Weight: 120g",
+      "Handle: G10",
+      "Blade: D2 Tool Steel",
+      "Overall Length: 8.2 in",
+      "Dishwasher Safe (Handwash Recommended)",
+      "Blade: 8Cr13MoV"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?folding-knife&sig=3873"]
+  },
+  {
+    "name": "Assisted Opening",
+    "price": 51.62,
+    "isOnSale": false,
+    "stock": 67,
+    "categoryId": "folding",
+    "specifications": [
+      "Full Tang",
+      "Lock: Frame Lock",
+      "Blade: D2 Tool Steel",
+      "Handle: Micarta",
+      "Corrosion Resistant",
+      "Blade: 8Cr13MoV"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?folding-knife&sig=4346",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=7455",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=4674",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=6931"
+    ]
+  },
+  {
+    "name": "Carbon Fiber Folder",
+    "price": 120.56,
+    "isOnSale": true,
+    "stock": 76,
+    "categoryId": "folding",
+    "specifications": [
+      "Handle: Walnut Wood",
+      "Full Tang",
+      "Sheath: Leather",
+      "Corrosion Resistant",
+      "Blade: D2 Tool Steel",
+      "Blade Length: 3.5 in"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?folding-knife&sig=5139"],
+    "newPrice": 96.45
+  },
+  {
+    "name": "Mini EDC",
+    "price": 37.43,
+    "isOnSale": false,
+    "stock": 79,
+    "categoryId": "folding",
+    "specifications": [
+      "Finish: Stonewashed",
+      "Dishwasher Safe (Handwash Recommended)",
+      "Handle: Micarta",
+      "Blade: D2 Tool Steel",
+      "Corrosion Resistant",
+      "Blade: Damascus Steel"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?folding-knife&sig=1123",
+      "https://source.unsplash.com/800x800/?folding-knife&sig=9750"
+    ]
+  },
+  {
+    "name": "Trail Folder",
+    "price": 38.83,
+    "isOnSale": false,
+    "stock": 35,
+    "categoryId": "folding",
+    "specifications": [
+      "Handle: G10",
+      "Blade Length: 3.5 in",
+      "Hidden Tang",
+      "Corrosion Resistant",
+      "Blade Length: 8 in",
+      "Blade: D2 Tool Steel"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?folding-knife&sig=6869"]
+  },
+  {
+    "name": "Micro Key Knife",
+    "price": 25.75,
+    "isOnSale": false,
+    "stock": 77,
+    "categoryId": "key-rings",
+    "specifications": [
+      "HRC 58-60",
+      "Full Tang",
+      "Spine Thickness: 3 mm",
+      "Non-slip Handle",
+      "Sheath: Kydex"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=4352",
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=6485"
+    ]
+  },
+  {
+    "name": "Keychain Multi-Blade",
+    "price": 11.53,
+    "isOnSale": false,
+    "stock": 43,
+    "categoryId": "key-rings",
+    "specifications": [
+      "Sheath: Kydex",
+      "Blade: Damascus Steel",
+      "Blade: 8Cr13MoV",
+      "Grind: Hollow",
+      "Blade Length: 8 in",
+      "Blade Length: 3.5 in"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?keychain-knife&sig=1201"]
+  },
+  {
+    "name": "Mini Utility Cutter",
+    "price": 22.52,
+    "isOnSale": false,
+    "stock": 69,
+    "categoryId": "key-rings",
+    "specifications": [
+      "Handle: Walnut Wood",
+      "Lock: Liner Lock",
+      "Blade: Damascus Steel",
+      "Hidden Tang",
+      "Sheath: Leather"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=7180",
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=8901"
+    ]
+  },
+  {
+    "name": "Quick Release Key Knife",
+    "price": 27.0,
+    "isOnSale": false,
+    "stock": 72,
+    "categoryId": "key-rings",
+    "specifications": [
+      "Spine Thickness: 3 mm",
+      "Weight: 120g",
+      "Sheath: Leather"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?keychain-knife&sig=2201"]
+  },
+  {
+    "name": "Pen Knife Key Ring",
+    "price": 15.14,
+    "isOnSale": false,
+    "stock": 18,
+    "categoryId": "key-rings",
+    "specifications": [
+      "HRC 58-60",
+      "Sheath: Leather",
+      "Blade Length: 8 in",
+      "Full Tang"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=3336",
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=4326",
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=8281"
+    ]
+  },
+  {
+    "name": "Nano Key Knife",
+    "price": 21.19,
+    "isOnSale": false,
+    "stock": 11,
+    "categoryId": "key-rings",
+    "specifications": ["Overall Length: 8.2 in", "Grind: Flat", "HRC 58-60"],
+    "images": ["https://source.unsplash.com/800x800/?keychain-knife&sig=59"]
+  },
+  {
+    "name": "Capsule Key Knife",
+    "price": 17.01,
+    "isOnSale": false,
+    "stock": 21,
+    "categoryId": "key-rings",
+    "specifications": [
+      "Handle: Micarta",
+      "Corrosion Resistant",
+      "Grind: Hollow",
+      "Weight: 120g",
+      "Non-slip Handle"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=9190",
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=159",
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=1833",
+      "https://source.unsplash.com/800x800/?keychain-knife&sig=1233"
+    ]
+  },
+  {
+    "name": "Chef's Knife 8\"",
+    "price": 133.41,
+    "isOnSale": false,
+    "stock": 24,
+    "categoryId": "kitchen",
+    "specifications": [
+      "Lock: Liner Lock",
+      "Blade Length: 3.5 in",
+      "Weight: 120g"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?chef-knife&sig=7042",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=2089"
+    ]
+  },
+  {
+    "name": "Santoku 7\"",
+    "price": 25.02,
+    "isOnSale": true,
+    "stock": 51,
+    "categoryId": "kitchen",
+    "specifications": [
+      "Lock: Liner Lock",
+      "Full Tang",
+      "Spine Thickness: 3 mm"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?chef-knife&sig=1685",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=5795"
+    ],
+    "newPrice": 20.02
+  },
+  {
+    "name": "Paring Knife 3.5\"",
+    "price": 113.61,
+    "isOnSale": true,
+    "stock": 57,
+    "categoryId": "kitchen",
+    "specifications": [
+      "Hidden Tang",
+      "Handle: Micarta",
+      "Grind: Flat",
+      "Blade: 8Cr13MoV"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?chef-knife&sig=5443",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=6746"
+    ],
+    "newPrice": 96.57
+  },
+  {
+    "name": "Bread Knife 10\"",
+    "price": 116.27,
+    "isOnSale": false,
+    "stock": 36,
+    "categoryId": "kitchen",
+    "specifications": [
+      "Handle: Micarta",
+      "Non-slip Handle",
+      "Handle: G10",
+      "Lock: Frame Lock",
+      "Blade: D2 Tool Steel"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?chef-knife&sig=3645",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=3270",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=7542",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=5729"
+    ]
+  },
+  {
+    "name": "Boning Knife 6\"",
+    "price": 56.62,
+    "isOnSale": false,
+    "stock": 34,
+    "categoryId": "kitchen",
+    "specifications": [
+      "Blade: 8Cr13MoV",
+      "Spine Thickness: 3 mm",
+      "Full Tang",
+      "Lock: Frame Lock"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?chef-knife&sig=4565",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=1138",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=4574"
+    ]
+  },
+  {
+    "name": "Cleaver 7\"",
+    "price": 62.14,
+    "isOnSale": false,
+    "stock": 70,
+    "categoryId": "kitchen",
+    "specifications": [
+      "Spine Thickness: 3 mm",
+      "Weight: 120g",
+      "Sheath: Kydex",
+      "Blade: 8Cr13MoV",
+      "Handle: G10",
+      "HRC 58-60"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?chef-knife&sig=9513",
+      "https://source.unsplash.com/800x800/?chef-knife&sig=4350"
+    ]
+  },
+  {
+    "name": "Utility Knife 5\"",
+    "price": 24.59,
+    "isOnSale": false,
+    "stock": 60,
+    "categoryId": "kitchen",
+    "specifications": [
+      "Corrosion Resistant",
+      "Sheath: Kydex",
+      "Grind: Flat",
+      "Blade Length: 8 in",
+      "Finish: Stonewashed"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?chef-knife&sig=6312"]
+  },
+  {
+    "name": "Honing Oil",
+    "price": 63.77,
+    "isOnSale": true,
+    "stock": 29,
+    "categoryId": "knife-care",
+    "specifications": [
+      "Blade: D2 Tool Steel",
+      "Non-slip Handle",
+      "Grind: Flat",
+      "Blade: 8Cr13MoV",
+      "Finish: Stonewashed"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=5968",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=7067"
+    ],
+    "newPrice": 54.2
+  },
+  {
+    "name": "Leather Strop",
+    "price": 12.34,
+    "isOnSale": false,
+    "stock": 47,
+    "categoryId": "knife-care",
+    "specifications": [
+      "Spine Thickness: 3 mm",
+      "Handle: G10",
+      "Corrosion Resistant",
+      "Sheath: Leather",
+      "Finish: Stonewashed"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=6692",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=5345",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=6593"
+    ]
+  },
+  {
+    "name": "Sharpening Stone 1000/6000",
+    "price": 51.23,
+    "isOnSale": false,
+    "stock": 75,
+    "categoryId": "knife-care",
+    "specifications": [
+      "Full Tang",
+      "Grind: Flat",
+      "Spine Thickness: 3 mm",
+      "Lock: Frame Lock"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=9325",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=4931"
+    ]
+  },
+  {
+    "name": "Ceramic Rod",
+    "price": 33.18,
+    "isOnSale": false,
+    "stock": 5,
+    "categoryId": "knife-care",
+    "specifications": [
+      "Sheath: Leather",
+      "Full Tang",
+      "Grind: Flat",
+      "Blade Length: 3.5 in",
+      "Blade Length: 8 in"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=7619",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=7239",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=7245"
+    ]
+  },
+  {
+    "name": "Edge Guide",
+    "price": 49.89,
+    "isOnSale": false,
+    "stock": 70,
+    "categoryId": "knife-care",
+    "specifications": [
+      "Corrosion Resistant",
+      "Handle: Micarta",
+      "Spine Thickness: 3 mm",
+      "Blade: Damascus Steel",
+      "Sheath: Leather",
+      "Finish: Stonewashed"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=1531",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=3849",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=5086"
+    ]
+  },
+  {
+    "name": "Strop Compound",
+    "price": 21.93,
+    "isOnSale": false,
+    "stock": 30,
+    "categoryId": "knife-care",
+    "specifications": [
+      "Blade: 8Cr13MoV",
+      "Blade: D2 Tool Steel",
+      "Hidden Tang",
+      "Finish: Satin"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?knife-sharpening&sig=7462"]
+  },
+  {
+    "name": "Angle Finder",
+    "price": 33.7,
+    "isOnSale": false,
+    "stock": 78,
+    "categoryId": "knife-care",
+    "specifications": [
+      "Non-slip Handle",
+      "Lock: Frame Lock",
+      "Finish: Satin",
+      "Hidden Tang"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=91",
+      "https://source.unsplash.com/800x800/?knife-sharpening&sig=1747"
+    ]
+  },
+  {
+    "name": "Barber Straight Razor",
+    "price": 98.95,
+    "isOnSale": false,
+    "stock": 33,
+    "categoryId": "straight-razors",
+    "specifications": [
+      "Non-slip Handle",
+      "Finish: Stonewashed",
+      "Grind: Hollow",
+      "Blade: D2 Tool Steel"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?straight-razor&sig=1989",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=7479"
+    ]
+  },
+  {
+    "name": "Classic Shavette",
+    "price": 37.67,
+    "isOnSale": false,
+    "stock": 64,
+    "categoryId": "straight-razors",
+    "specifications": [
+      "Dishwasher Safe (Handwash Recommended)",
+      "Grind: Hollow",
+      "Blade Length: 8 in",
+      "Corrosion Resistant",
+      "Finish: Stonewashed"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?straight-razor&sig=8977",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=7306",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=2608",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=7778"
+    ]
+  },
+  {
+    "name": "Carbon Steel Straight",
+    "price": 67.76,
+    "isOnSale": false,
+    "stock": 36,
+    "categoryId": "straight-razors",
+    "specifications": [
+      "Dishwasher Safe (Handwash Recommended)",
+      "Finish: Stonewashed",
+      "Finish: Satin",
+      "Overall Length: 8.2 in",
+      "Hidden Tang"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?straight-razor&sig=7207",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=1270",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=4682"
+    ]
+  },
+  {
+    "name": "Wood Handle Razor",
+    "price": 47.28,
+    "isOnSale": false,
+    "stock": 47,
+    "categoryId": "straight-razors",
+    "specifications": [
+      "Weight: 120g",
+      "Blade: Damascus Steel",
+      "Handle: Walnut Wood",
+      "Hidden Tang",
+      "Lock: Frame Lock"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?straight-razor&sig=3506",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=1053"
+    ]
+  },
+  {
+    "name": "Foldable Straight Razor",
+    "price": 64.41,
+    "isOnSale": false,
+    "stock": 47,
+    "categoryId": "straight-razors",
+    "specifications": [
+      "Grind: Flat",
+      "Blade: D2 Tool Steel",
+      "Full Tang",
+      "Dishwasher Safe (Handwash Recommended)",
+      "Lock: Frame Lock",
+      "Blade Length: 3.5 in"
+    ],
+    "images": ["https://source.unsplash.com/800x800/?straight-razor&sig=9433"]
+  },
+  {
+    "name": "Silver Edge Straight",
+    "price": 61.14,
+    "isOnSale": false,
+    "stock": 5,
+    "categoryId": "straight-razors",
+    "specifications": [
+      "Sheath: Leather",
+      "Dishwasher Safe (Handwash Recommended)",
+      "Lock: Frame Lock",
+      "Grind: Flat",
+      "Weight: 120g"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?straight-razor&sig=8000",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=3596"
+    ]
+  },
+  {
+    "name": "Traditional Straight Razor",
+    "price": 50.93,
+    "isOnSale": true,
+    "stock": 67,
+    "categoryId": "straight-razors",
+    "specifications": [
+      "Lock: Frame Lock",
+      "Sheath: Kydex",
+      "Spine Thickness: 3 mm"
+    ],
+    "images": [
+      "https://source.unsplash.com/800x800/?straight-razor&sig=2705",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=7658",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=2092",
+      "https://source.unsplash.com/800x800/?straight-razor&sig=8752"
+    ],
+    "newPrice": 43.29
+  }
+]

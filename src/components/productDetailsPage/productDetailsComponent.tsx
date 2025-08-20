@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useContext } from "react";
+import { CartContext } from "../CartManager";
 
 function ProductDetailsComponent() {
-  let [productQuantity, setProductQuantity] = useState<number>(1);
+  const CartItems = useContext(CartContext);
+  if (!CartItems) throw new Error("error");
+  let { productQuantity, setProductQuantity } = CartItems;
   let [selectedImage, setSelectedImage] = useState<string>(
     "https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
   );
@@ -180,7 +184,12 @@ function ProductDetailsComponent() {
                   </button>
                 </div>
                 <div className="px-3">
-                  <button className="btn btn-dark rounded-0 px-3 py-2">
+                  <button
+                    className="btn btn-dark rounded-0 px-3 py-2"
+                    onClick={() => {
+                      console.log(productQuantity);
+                    }}
+                  >
                     Add to cart
                   </button>
                 </div>
