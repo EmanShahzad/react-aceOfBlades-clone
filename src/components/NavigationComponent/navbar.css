@@ -2,3 +2,8 @@
   max-height: 25vh;
   min-height: 15vh;
 }
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}

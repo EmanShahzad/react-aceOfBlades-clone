@@ -3,14 +3,29 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useContext } from "react";
 import { CartContext } from "../CartManager";
+import { useParams } from "react-router-dom";
+import { useAppSelector } from "../../redux/hooks";
 
 function ProductDetailsComponent() {
   const CartItems = useContext(CartContext);
   if (!CartItems) throw new Error("error");
   let { productQuantity, setProductQuantity } = CartItems;
-  let [selectedImage, setSelectedImage] = useState<string>(
-    "https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
-  );
+
+  const { id } = useParams<{ id: string }>();
+  const products = useAppSelector((state) => state.products);
+
+  const item = products.find((x) => x.id === id);
+
+  const categories = useAppSelector((state) => {
+    return state.categories;
+  });
+  const findCategory = () => {
+    const category = categories.find((cat) => item?.categoryId === cat.id);
+    return category?.name;
+  };
+
+  const defaultImage = item?.images[0] as string;
+  let [selectedImage, setSelectedImage] = useState<string>(defaultImage);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -34,82 +49,22 @@ function ProductDetailsComponent() {
                   style={{ maxWidth: "380px" }}
                   className="d-flex m-0 p-2"
                 >
-                  <SwiperSlide
-                    className={
-                      selectedImage ===
-                      "https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
-                        ? "border border-dark border-2"
-                        : ""
-                    }
-                  >
-                    <img
-                      className="w-100"
-                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
-                      alt=""
-                      onClick={() => {
-                        setSelectedImage(
-                          "https://theaceofblades.co.za/wp-content/uploads/IMG_5074-600x600.jpg"
-                        );
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide
-                    className={
-                      selectedImage ===
-                      "https://theaceofblades.co.za/wp-content/uploads/IMG_5069.jpg"
-                        ? "border border-dark border-2"
-                        : ""
-                    }
-                  >
-                    <img
-                      className="w-100"
-                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5069.jpg"
-                      alt=""
-                      onClick={() => {
-                        setSelectedImage(
-                          "https://theaceofblades.co.za/wp-content/uploads/IMG_5069.jpg"
-                        );
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide
-                    className={
-                      selectedImage ===
-                      "https://theaceofblades.co.za/wp-content/uploads/IMG_5075-1024x1024.jpg"
-                        ? "border border-dark border-2"
-                        : ""
-                    }
-                  >
-                    <img
-                      className="w-100"
-                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5075-1024x1024.jpg"
-                      alt=""
-                      onClick={() => {
-                        setSelectedImage(
-                          "https://theaceofblades.co.za/wp-content/uploads/IMG_5075-1024x1024.jpg"
-                        );
-                      }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide
-                    className={
-                      selectedImage ===
-                      "https://theaceofblades.co.za/wp-content/uploads/IMG_5087.jpg"
-                        ? "border border-dark border-2"
-                        : ""
-                    }
-                  >
-                    <img
-                      className="w-100"
-                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5087.jpg"
-                      alt=""
-                      onClick={() => {
-                        setSelectedImage(
-                          "https://theaceofblades.co.za/wp-content/uploads/IMG_5087.jpg"
-                        );
-                      }}
-                    />
-                  </SwiperSlide>
+                  {item?.images.map((i) => (
+                    <SwiperSlide
+                      className={
+                        selectedImage === i ? "border border-dark border-2" : ""
+                      }
+                    >
+                      <img
+                        className="w-100"
+                        src={i}
+                        alt=""
+                        onClick={() => {
+                          setSelectedImage(i);
+                        }}
+                      />
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
               </div>
             </div>
@@ -121,7 +76,7 @@ function ProductDetailsComponent() {
                   color: "#3a3a3a",
                 }}
               >
-                AOB-2452 Handmade Damascus Chef’s Knife
+                {item?.name}
               </div>
               <div
                 className="fs-3 fw-semibold"
@@ -130,7 +85,7 @@ function ProductDetailsComponent() {
                   color: "#4B4F58",
                 }}
               >
-                R990.00
+                {item?.price}
               </div>
               <div style={{ color: "#4B4F58" }} className="fs-5">
                 Beautiful handmade chef’s knife. The perfect addition to your
@@ -140,11 +95,16 @@ function ProductDetailsComponent() {
                 style={{ color: "#4B4F58", fontSize: "large" }}
                 className="py-4"
               >
-                Specifications: <br /> <span>– Handle material: Wood</span>
+                Specifications:{" "}
+                {item?.specifications.map((spec) => (
+                  <>
+                    <br /> <span>– {spec}</span>
+                  </>
+                ))}
               </div>
               <div style={{ color: "green" }} className="py-2">
-                <strong style={{ color: "#4B4F58" }}>Availability:</strong> 3 in
-                stock
+                <strong style={{ color: "#4B4F58" }}>Availability:</strong>{" "}
+                <span>{item?.stock}</span> in stock
               </div>
               <div
                 className="d-flex gap-4 px-2 py-3"
@@ -199,8 +159,8 @@ function ProductDetailsComponent() {
                   <span>SKU:</span> 2215-1-1
                 </span>
                 <span className="px-2">
-                  <span style={{ color: "#4B4F58" }}>Category:</span> Kitchen
-                  and chef knives
+                  <span style={{ color: "#4B4F58" }}>Category: </span>
+                  <span>{findCategory()}</span>
                 </span>
               </div>
 

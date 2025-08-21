@@ -7,6 +7,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "./components/CartManager";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,9 +16,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <CartProvider>
-        <App />
-      </CartProvider>
+      <Provider store={store}>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </Provider>
     </React.StrictMode>
   </BrowserRouter>
 );

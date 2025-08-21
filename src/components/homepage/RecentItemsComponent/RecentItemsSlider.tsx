@@ -1,22 +1,16 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
+import { useAppSelector } from "../../../redux/hooks";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./RecentItemsSlider.css";
+import { NavLink } from "react-router-dom";
 
 export default function RecentItemsSlider() {
-  const slides = [
-    "Slide 1",
-    "Slide 2",
-    "Slide 3",
-    "Slide 4",
-    "Slide 5",
-    "Slide 6",
-  ];
-
+  const products = useAppSelector((state) => state.products);
   return (
     <div
       className="d-flex justify-content-center flex-column"
@@ -31,7 +25,8 @@ export default function RecentItemsSlider() {
         </div>
         <Swiper
           modules={[Navigation]}
-          slidesPerView={3} // ✅ Swiper will now calculate widths
+          slidesPerView={3}
+          // ✅ Swiper will now calculate widths
           navigation
           breakpoints={{
             0: { slidesPerView: 1 },
@@ -39,37 +34,36 @@ export default function RecentItemsSlider() {
             992: { slidesPerView: 3 },
           }}
           mousewheel-force-to-axis="true"
-          onSlideChange={(swiper: SwiperType) =>
-            console.log("Slide changed to", swiper.activeIndex)
-          }
-          onSwiper={(swiper: SwiperType) =>
-            console.log("Swiper instance:", swiper)
-          }
           className="recent-items-swiper py-5"
         >
-          {slides.map((text, i) => (
+          {products.map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="slide-card ">
+              <div className="slide-card" style={{ minHeight: "100%" }}>
                 <div className="d-flex flex-column">
-                  <div className="w-100 h-50">
+                  <NavLink
+                    className="w-100 h-50"
+                    style={{ minHeight: "50%" }}
+                    to={`/product/${item.id}`}
+                  >
                     <img
-                      className="w-100 h-50"
-                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5745.jpg"
+                      className="w-100 h-100"
+                      style={{ minHeight: "50%" }}
+                      src={item.images[0]}
                       alt=""
                     />
-                  </div>
+                  </NavLink>
                   <div className="d-flex flex-column justify-content-center align-items-center py-3">
                     <span
                       className="fw-normal pt-2 fs-4 d-flex justify-content-center text-center p-3"
                       style={{ fontFamily: "Oswald" }}
                     >
-                      AOB-2452 Handmade Damascus Chef's Knife
+                      {item.name}
                     </span>
                     <span
                       className="fw-bold pb-2"
                       style={{ fontSize: "1.1rem", letterSpacing: "2px" }}
                     >
-                      R990
+                      {item.price}
                     </span>
                     <button
                       className="btn btn-outline-secondary rounded-0 py-2 text-black text-uppercase border-2"

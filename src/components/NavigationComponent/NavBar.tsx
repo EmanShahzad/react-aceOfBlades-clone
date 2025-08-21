@@ -1,6 +1,21 @@
 import "./navbar.css";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../redux/hooks";
+
 function NavBar() {
+  const categories = useAppSelector((state) => {
+    return state.categories;
+  });
+
+  const products = useAppSelector((state) => {
+    return state.products;
+  });
+
+  const productsCount = categories.map((category) => {
+    const count = products.filter((p) => p.categoryId === category.id).length;
+    return count;
+  });
+
   return (
     <div
       className="sticky-top text-uppercase bg-white"
@@ -41,22 +56,26 @@ function NavBar() {
                     >
                       AOB Collection
                     </a>
-                    <ul className="dropdown-menu position-absolute">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Action
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Another action
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Something else here
-                        </a>
-                      </li>
+                    <ul className="dropdown-menu position-absolute p-2">
+                      {categories.map((category, indexC) => (
+                        <li>
+                          <a className="dropdown-item" href="#">
+                            <span className="d-flex justify-content-start align-items-center gap-2 px-2 fw-semibold">
+                              <span>
+                                <img
+                                  style={{ maxWidth: "50px" }}
+                                  src={category.image}
+                                  alt=""
+                                />
+                              </span>
+                              <span>{category.name}</span>
+                              {productsCount.map((count, index) =>
+                                index === indexC ? <span>({count})</span> : null
+                              )}
+                            </span>
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </li>
                   <li className="nav-item  me-3">
