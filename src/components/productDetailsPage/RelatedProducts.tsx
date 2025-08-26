@@ -1,4 +1,33 @@
-function RelatedProducts() {
+import { NavLink } from "react-router-dom";
+
+interface ProductState {
+  id: string;
+  name: string;
+  price: number;
+  isOnSale: boolean;
+  newPrice?: number;
+  stock: number;
+  categoryId: string;
+  specifications: string[];
+  images: string[];
+}
+
+interface CategoryState {
+  id: string;
+  name: string;
+  image: string;
+}
+
+interface RelatedProductsProps {
+  products: ProductState[];
+  categories: CategoryState[];
+  item?: ProductState;
+}
+
+function RelatedProducts({ products, categories, item }: RelatedProductsProps) {
+  function categoryName(item: ProductState) {
+    return categories.find((c) => c.id === item.categoryId)?.name;
+  }
   return (
     <div className="d-flex justify-content-center flex-column pb-5">
       <div className="container">
@@ -13,40 +42,45 @@ function RelatedProducts() {
             className="d-flex justify-content-start align-items-start flex-wrap gap-4 px-5 py-2"
             style={{ fontFamily: "Roboto, sans-serif", width: "100%" }}
           >
-            <div
-              className="d-flex flex-column w-25 h-auto mr-1"
-              style={{
-                maxWidth: "24%",
-                boxShadow: "1px 1px 2px 0px rgba(0, 0, 0, .1)",
-              }}
-            >
-              <div>
-                <img
-                  className="w-100 bg-white h-100"
-                  src="https://theaceofblades.co.za/wp-content/uploads/aob-2314-2.jpg"
-                  alt=""
-                />
-              </div>
-              <div
-                className="d-flex flex-column justify-content-center text-center gap-1"
-                style={{ backgroundColor: "#f2f2f2" }}
-              >
-                <span style={{ color: "gray" }}>Category Name</span>
-                <span className="fw-semibold">
-                  AOB-2314 Handmade Damascus Folding Knife
-                </span>
+            {products.map((product) =>
+              product !== item && product.categoryId === item?.categoryId ? (
+                <div
+                  className="d-flex flex-column w-25 h-auto mr-1"
+                  style={{
+                    maxWidth: "24%",
+                    boxShadow: "1px 1px 2px 0px rgba(0, 0, 0, .1)",
+                  }}
+                >
+                  <NavLink to={`/product/${product.id}`}>
+                    <img
+                      className="w-100 bg-white h-100"
+                      src={product.images[0]}
+                      alt=""
+                    />
+                  </NavLink>
+                  <div
+                    className="d-flex flex-column justify-content-center text-center gap-1"
+                    style={{ backgroundColor: "#f2f2f2" }}
+                  >
+                    <span style={{ color: "gray" }}>{categoryName(item)}</span>
+                    <span className="fw-semibold">{product.name}</span>
 
-                <span className="fw-semibold" style={{ color: "#4a4949ff" }}>
-                  R790.00
-                </span>
+                    <span
+                      className="fw-semibold"
+                      style={{ color: "#4a4949ff" }}
+                    >
+                      {product.price}
+                    </span>
 
-                <span className="d-flex justify-content-center my-3">
-                  <button className="btn btn-dark rounded-0 px-4">
-                    Add to cart
-                  </button>
-                </span>
-              </div>
-            </div>
+                    <span className="d-flex justify-content-center my-3">
+                      <button className="btn btn-dark rounded-0 px-4">
+                        Add to cart
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              ) : null
+            )}
           </div>
         </div>
       </div>

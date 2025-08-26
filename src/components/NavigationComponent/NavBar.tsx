@@ -11,6 +11,10 @@ function NavBar() {
     return state.products;
   });
 
+  const cart = useAppSelector((state) => {
+    return state.cart;
+  });
+
   const productsCount = categories.map((category) => {
     const count = products.filter((p) => p.categoryId === category.id).length;
     return count;
@@ -24,12 +28,14 @@ function NavBar() {
       <div className="container">
         <div className="d-flex gap-4 justify-content-between align-items-center px-5 py-2">
           <div className="d-flex my-2 flex-column justify-content-center align-items-center">
-            <img
-              className=""
-              style={{ width: "90px" }}
-              src="https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-Blades-Logo200.jpg"
-              alt="logo"
-            />
+            <NavLink to={"/"}>
+              <img
+                className=""
+                style={{ width: "90px" }}
+                src="https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-Blades-Logo200.jpg"
+                alt="logo"
+              />
+            </NavLink>
             <span style={{ fontSize: "smaller" }} className="fw-bold">
               The Ace of Blades
             </span>
@@ -59,7 +65,10 @@ function NavBar() {
                     <ul className="dropdown-menu position-absolute p-2">
                       {categories.map((category, indexC) => (
                         <li>
-                          <a className="dropdown-item" href="#">
+                          <NavLink
+                            className="dropdown-item"
+                            to={`/${category.id}`}
+                          >
                             <span className="d-flex justify-content-start align-items-center gap-2 px-2 fw-semibold">
                               <span>
                                 <img
@@ -73,7 +82,7 @@ function NavBar() {
                                 index === indexC ? <span>({count})</span> : null
                               )}
                             </span>
-                          </a>
+                          </NavLink>
                         </li>
                       ))}
                     </ul>
@@ -122,7 +131,8 @@ function NavBar() {
             >
               <i className="bi bi-cart-fill fs-4"></i>
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-black">
-                1<span className="visually-hidden">cart items count</span>
+                {cart.length}
+                <span className="visually-hidden">cart items count</span>
               </span>
             </NavLink>
           </div>

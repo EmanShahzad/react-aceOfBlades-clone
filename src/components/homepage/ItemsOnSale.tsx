@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../redux/hooks";
+import { NavLink } from "react-router-dom";
 function ItemsOnSale() {
   const products = useAppSelector((state) => state.products);
   return (
@@ -26,11 +27,13 @@ function ItemsOnSale() {
                   style={{ maxWidth: "24%" }}
                 >
                   <div className="w-100 position-relative">
-                    <img
-                      className="w-100 bg-white h-100"
-                      src={item.images[0]}
-                      alt=""
-                    />
+                    <NavLink to={`/product/${item.id}`}>
+                      <img
+                        className="w-100 bg-white h-100"
+                        src={item.images[0]}
+                        alt=""
+                      />
+                    </NavLink>
                     <span
                       className="position-absolute text-black w-50 h-50"
                       style={{ top: "5%", right: "-42%" }}

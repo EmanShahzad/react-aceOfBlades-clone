@@ -7,6 +7,7 @@ import React, {
 
 interface CartProps {
   productQuantity: number;
+  // productId: string;
   setProductQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 

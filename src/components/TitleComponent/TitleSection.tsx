@@ -1,6 +1,6 @@
 import "./TitleSection.css";
 
-function TitleSection({ title }: { title: string }) {
+function TitleSection({ title }: { title?: string }) {
   return (
     <div className="scrollspy-example bg-image2">
       <div className="container p-5">

@@ -1,16 +1,38 @@
-import { useContext } from "react";
-import { CartContext } from "../CartManager";
+import { useEffect, useState } from "react";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import {
+  increaseQuantity,
+  decreaseQuantity,
+} from "../../redux/features/cart/CartSlice";
+import { NavLink } from "react-router-dom";
 
 function CartComponent() {
-  const CartItems = useContext(CartContext);
-  if (!CartItems) throw new Error("error");
-  let { productQuantity, setProductQuantity } = CartItems;
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => {
+    return state.cart;
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const newQuantity = Number(value);
-    setProductQuantity(newQuantity);
+  const products = useAppSelector((state) => {
+    return state.products;
+  });
+
+  let [quantity, setQuantity] = useState<number>(1);
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
+  const countTotal = () => {
+    let total = cart.reduce((acc, item) => {
+      const product = products.find((p) => p.id === item.productId);
+      if (product) {
+        return acc + product.price * item.productQuantity;
+      }
+      return acc;
+    }, 0);
+
+    return total;
   };
+
   return (
     <section>
       <div className="container">
@@ -42,58 +64,62 @@ function CartComponent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="align-middle">
-                  <th scope="row">
-                    <i className="bi bi-x-circle text-secondary fs-5"></i>
-                  </th>
-                  <td className="w-auto">
-                    <img
-                      style={{ width: "70px" }}
-                      src="https://theaceofblades.co.za/wp-content/uploads/IMG_5745-600x600.jpg"
-                      alt=""
-                    />
-                  </td>
-                  <td className="fw-medium">
-                    AOB-2452 Handmade Damascus Chef’s Knife
-                  </td>
-                  <td>R990.00</td>
-                  <td>
-                    <div
-                      className="d-flex border justify-content-around align-items-center"
-                      style={{ width: "150px" }}
-                    >
-                      <button
-                        className="text-center btn rounded-0 w-100"
-                        onClick={() => {
-                          if (productQuantity > 1)
-                            setProductQuantity(--productQuantity);
-                        }}
-                      >
-                        -
-                      </button>
-                      <span className="w-auto border-start border-end text-center">
-                        <input
-                          className="border-0 shadow-none text-center p-1"
-                          style={{ width: "50px" }}
-                          type="number"
-                          name="quantity"
-                          id="order-quantity"
-                          value={productQuantity}
-                          onChange={handleChange}
-                        />
-                      </span>
-                      <button
-                        className="text-center btn rounded-0 w-100"
-                        onClick={() => {
-                          setProductQuantity(++productQuantity);
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
-                  </td>
-                  <td>R990.00</td>
-                </tr>
+                {cart.map((item) =>
+                  products.map((p) =>
+                    p.id === item.productId ? (
+                      <tr className="align-middle">
+                        <th scope="row">
+                          <i className="bi bi-x-circle text-secondary fs-5"></i>
+                        </th>
+                        <td className="w-auto">
+                          <img
+                            style={{ width: "70px" }}
+                            src={p.images[0]}
+                            alt=""
+                          />
+                        </td>
+                        <td className="fw-medium">{p.name}</td>
+                        <td>{p.price}</td>
+                        <td>
+                          <div
+                            className="d-flex border justify-content-around align-items-center"
+                            style={{ width: "150px" }}
+                          >
+                            <button
+                              className="text-center btn rounded-0 w-100"
+                              onClick={() => {
+                                if (item.productQuantity > 1)
+                                  dispatch(decreaseQuantity(item.productId));
+                              }}
+                            >
+                              -
+                            </button>
+                            <span className="w-auto border-start border-end text-center">
+                              <input
+                                className="border-0 shadow-none text-center p-1"
+                                style={{ width: "50px" }}
+                                type="number"
+                                name="quantity"
+                                id="order-quantity"
+                                value={item.productQuantity}
+                              />
+                            </span>
+                            <button
+                              className="text-center btn rounded-0 w-100"
+                              onClick={() => {
+                                if (item.productQuantity < p.stock)
+                                  dispatch(increaseQuantity(item.productId));
+                              }}
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
+                        <td>{(p.price * item.productQuantity).toFixed(2)}</td>
+                      </tr>
+                    ) : null
+                  )
+                )}
               </tbody>
             </table>
           </div>
@@ -114,7 +140,7 @@ function CartComponent() {
               <tbody>
                 <tr className="align-middle">
                   <td className="py-4">Subtotal</td>
-                  <td>R1,980.00</td>
+                  <td>{countTotal().toFixed(2)}</td>
                 </tr>
                 <tr className="align-middle">
                   <td className="py-4">Shipping</td>
@@ -150,20 +176,17 @@ function CartComponent() {
                 </tr>
                 <tr className="align-middle">
                   <td className="py-3">Total</td>
-                  <td>R1,980.00</td>
+                  <td>{(countTotal() + 75).toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>
             <div className="w-100">
               <div className="py-2">Have a coupon?</div>
-              <button
-                className="btn btn-dark rounded-0 py-4 w-100 my-2"
-                onClick={() => {
-                  console.log(productQuantity);
-                }}
-              >
-                Proceed to checkout
-              </button>
+              <NavLink to="/checkout">
+                <button className="btn btn-dark rounded-0 py-4 w-100 my-2">
+                  Proceed to checkout
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>

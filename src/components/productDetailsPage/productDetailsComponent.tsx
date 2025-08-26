@@ -1,36 +1,98 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { useContext } from "react";
-import { CartContext } from "../CartManager";
-import { useParams } from "react-router-dom";
-import { useAppSelector } from "../../redux/hooks";
+import { NavLink } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { addToCart } from "../../redux/features/cart/CartSlice";
 
-function ProductDetailsComponent() {
-  const CartItems = useContext(CartContext);
-  if (!CartItems) throw new Error("error");
-  let { productQuantity, setProductQuantity } = CartItems;
+interface ProductState {
+  id: string;
+  name: string;
+  price: number;
+  isOnSale: boolean;
+  newPrice?: number;
+  stock: number;
+  categoryId: string;
+  specifications: string[];
+  images: string[];
+}
 
-  const { id } = useParams<{ id: string }>();
-  const products = useAppSelector((state) => state.products);
+interface CategoryState {
+  id: string;
+  name: string;
+  image: string;
+}
 
-  const item = products.find((x) => x.id === id);
+interface RelatedProductsProps {
+  products: ProductState[];
+  categories: CategoryState[];
+  item?: ProductState;
+}
 
-  const categories = useAppSelector((state) => {
-    return state.categories;
+interface CartProps {
+  productQuantity: number;
+  productId: string;
+}
+
+function ProductDetailsComponent({
+  products,
+  categories,
+  item,
+}: RelatedProductsProps) {
+  const [quantity, setQuantity] = useState<number>(1);
+  const cart = useAppSelector((state) => {
+    return state.cart;
   });
+
+  const dispatch = useAppDispatch();
+  const addItem = (itemId: string) => {
+    dispatch(addToCart({ itemId, quantity }));
+  };
+
   const findCategory = () => {
     const category = categories.find((cat) => item?.categoryId === cat.id);
     return category?.name;
   };
 
+  const goNext = () => {
+    let i = products.findIndex((p) => p === item);
+    const nextItem = products[(i + 1) % products.length];
+    return nextItem ? nextItem.id : null;
+  };
+
+  const goPrev = () => {
+    let i = products.findIndex((p) => p === item);
+    const nextItem = products[(i - 1) % products.length];
+    return nextItem ? nextItem.id : null;
+  };
+  //   if (cart.find((c) => c.productId === itemId)) {
+  //     setCart(
+  //       cart.map((item) =>
+  //         item.productId === itemId
+  //           ? { ...item, productQuantity: item.productQuantity + quantity }
+  //           : item
+  //       )
+  //     );
+  //   } else {
+  //     setCart((prevCart) => [
+  //       ...prevCart,
+  //       { productId: itemId, productQuantity: quantity },
+  //     ]);
+  //   }
+  // };
+
   const defaultImage = item?.images[0] as string;
   let [selectedImage, setSelectedImage] = useState<string>(defaultImage);
+  useEffect(() => {
+    setSelectedImage(item?.images[0] as string);
+    console.log("Cart updated:", cart);
+    setQuantity(1);
+  }, [item, cart]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const newQuantity = Number(value);
-    setProductQuantity(newQuantity);
+    setQuantity(newQuantity);
   };
   return (
     <div>
@@ -117,8 +179,7 @@ function ProductDetailsComponent() {
                   <button
                     className="text-center btn rounded-0 w-100"
                     onClick={() => {
-                      if (productQuantity > 1)
-                        setProductQuantity(--productQuantity);
+                      if (quantity > 1) setQuantity(quantity - 1);
                     }}
                   >
                     -
@@ -130,14 +191,16 @@ function ProductDetailsComponent() {
                       type="number"
                       name="quantity"
                       id="order-quantity"
-                      value={productQuantity}
+                      value={quantity}
                       onChange={handleChange}
                     />
                   </span>
                   <button
                     className="text-center btn rounded-0 w-100"
                     onClick={() => {
-                      setProductQuantity(++productQuantity);
+                      if (item && quantity < item?.stock)
+                        setQuantity(quantity + 1);
+                      else alert("Stock not available");
                     }}
                   >
                     +
@@ -147,7 +210,7 @@ function ProductDetailsComponent() {
                   <button
                     className="btn btn-dark rounded-0 px-3 py-2"
                     onClick={() => {
-                      console.log(productQuantity);
+                      if (item?.id) addItem(item?.id);
                     }}
                   >
                     Add to cart
@@ -192,8 +255,6 @@ function ProductDetailsComponent() {
                   <li>
                     <svg
                       style={{ width: "40px" }}
-                      //   width="800px"
-                      //   height="800px"
                       viewBox="0 -140 780 780"
                       enable-background="new 0 0 780 500"
                       version="1.1"
@@ -216,8 +277,6 @@ function ProductDetailsComponent() {
                   <li>
                     <svg
                       style={{ width: "40px" }}
-                      //   width="800px"
-                      //   height="800px"
                       viewBox="0 -9 58 58"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -254,8 +313,6 @@ function ProductDetailsComponent() {
                   <li>
                     <svg
                       style={{ width: "40px" }}
-                      //   width="800px"
-                      //   height="800px"
                       viewBox="0 -139.5 750 750"
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -297,8 +354,6 @@ function ProductDetailsComponent() {
                     <svg
                       style={{ width: "40px" }}
                       fill="#000000"
-                      //   width="800px"
-                      //   height="800px"
                       viewBox="0 0 14 14"
                       role="img"
                       focusable="false"
@@ -320,10 +375,14 @@ function ProductDetailsComponent() {
             style={{ width: "70px" }}
           >
             <div className="rounded-circle bg-black text-white p-2 py-1">
-              <i className="bi bi-chevron-left"></i>
+              <NavLink className="text-white" to={`/product/${goPrev()}`}>
+                <i className="bi bi-chevron-left"></i>
+              </NavLink>
             </div>
             <div className="rounded-circle bg-black text-white p-2 py-1">
-              <i className="bi bi-chevron-right"></i>
+              <NavLink className="text-white" to={`/product/${goNext()}`}>
+                <i className="bi bi-chevron-right"></i>
+              </NavLink>
             </div>
           </div>
         </div>
