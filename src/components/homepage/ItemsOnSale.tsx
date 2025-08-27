@@ -1,7 +1,12 @@
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { NavLink } from "react-router-dom";
+import { addToCart } from "../../redux/features/cart/CartSlice";
 function ItemsOnSale() {
   const products = useAppSelector((state) => state.products);
+  const dispatch = useAppDispatch();
+  const addItem = (itemId: string, quantity: number) => {
+    dispatch(addToCart({ itemId, quantity }));
+  };
   return (
     <div
       className="d-flex justify-content-center flex-column"
@@ -23,6 +28,7 @@ function ItemsOnSale() {
             {products.map((item) =>
               item.isOnSale ? (
                 <div
+                  key={item.id}
                   className="d-flex flex-column gap-3 w-25 h-auto mr-1"
                   style={{ maxWidth: "24%" }}
                 >
@@ -63,6 +69,9 @@ function ItemsOnSale() {
                         <span
                           className=" d-flex pb-3 pt-1 px-1"
                           style={{ fontSize: "smaller" }}
+                          onClick={() => {
+                            addItem(item.id, 1);
+                          }}
                         >
                           Add to cart
                         </span>

@@ -24,6 +24,7 @@ function ProductsDisplay() {
               {products.map((product) =>
                 product.categoryId === category?.id ? (
                   <NavLink
+                    key={product.id}
                     className="d-flex flex-column w-25 h-auto mr-1 text-black"
                     to={`/product/${product.id}`}
                     style={{

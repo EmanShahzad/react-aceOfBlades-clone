@@ -64,7 +64,7 @@ function NavBar() {
                     </a>
                     <ul className="dropdown-menu position-absolute p-2">
                       {categories.map((category, indexC) => (
-                        <li>
+                        <li key={category.id}>
                           <NavLink
                             className="dropdown-item"
                             to={`/${category.id}`}
@@ -79,7 +79,9 @@ function NavBar() {
                               </span>
                               <span>{category.name}</span>
                               {productsCount.map((count, index) =>
-                                index === indexC ? <span>({count})</span> : null
+                                index === indexC ? (
+                                  <span key={indexC}>({count})</span>
+                                ) : null
                               )}
                             </span>
                           </NavLink>

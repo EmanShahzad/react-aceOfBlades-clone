@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import {
   increaseQuantity,
   decreaseQuantity,
 } from "../../redux/features/cart/CartSlice";
 import { NavLink } from "react-router-dom";
+import { setShipping } from "../../redux/features/cart/ShippingSlice";
 
 function CartComponent() {
   const dispatch = useAppDispatch();
@@ -15,8 +16,6 @@ function CartComponent() {
   const products = useAppSelector((state) => {
     return state.products;
   });
-
-  let [quantity, setQuantity] = useState<number>(1);
   useEffect(() => {
     console.log(cart);
   }, [cart]);
@@ -32,6 +31,14 @@ function CartComponent() {
 
     return total;
   };
+
+  const handleChange = (value: string) => {
+    dispatch(setShipping(value));
+  };
+
+  const shipping = useAppSelector((state) => {
+    return state.shipping.shipping;
+  });
 
   return (
     <section>
@@ -79,7 +86,7 @@ function CartComponent() {
                           />
                         </td>
                         <td className="fw-medium">{p.name}</td>
-                        <td>{p.price}</td>
+                        <td>R{p.price}</td>
                         <td>
                           <div
                             className="d-flex border justify-content-around align-items-center"
@@ -115,7 +122,7 @@ function CartComponent() {
                             </button>
                           </div>
                         </td>
-                        <td>{(p.price * item.productQuantity).toFixed(2)}</td>
+                        <td>R{(p.price * item.productQuantity).toFixed(2)}</td>
                       </tr>
                     ) : null
                   )
@@ -140,7 +147,7 @@ function CartComponent() {
               <tbody>
                 <tr className="align-middle">
                   <td className="py-4">Subtotal</td>
-                  <td>{countTotal().toFixed(2)}</td>
+                  <td>R{countTotal().toFixed(2)}</td>
                 </tr>
                 <tr className="align-middle">
                   <td className="py-4">Shipping</td>
@@ -152,6 +159,8 @@ function CartComponent() {
                           type="radio"
                           name="radioDefault"
                           id="radioDefault1"
+                          value="free"
+                          onChange={(e) => handleChange(e.target.value)}
                         />
                         <label className="form-check-label">
                           Free shipping
@@ -163,6 +172,8 @@ function CartComponent() {
                           type="radio"
                           name="radioDefault"
                           id="radioDefault2"
+                          value="flat"
+                          onChange={(e) => handleChange(e.target.value)}
                         />
                         <label className="form-check-label">
                           Flat rate: R75.00 <br /> Shipping to Northern Cape
@@ -176,7 +187,12 @@ function CartComponent() {
                 </tr>
                 <tr className="align-middle">
                   <td className="py-3">Total</td>
-                  <td>{(countTotal() + 75).toFixed(2)}</td>
+                  <td>
+                    R
+                    {shipping === "flat"
+                      ? (countTotal() + 75).toFixed(2)
+                      : countTotal().toFixed(2)}
+                  </td>
                 </tr>
               </tbody>
             </table>

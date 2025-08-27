@@ -1,8 +1,91 @@
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { setShipping } from "../../redux/features/cart/ShippingSlice";
+import { updateField } from "../../redux/features/checkout/CheckoutSlice";
+import React, { useEffect, useRef } from "react";
+
+interface CheckoutState {
+  city: string;
+  companyName: string;
+  country: string;
+  email: string;
+  firstName: string;
+  notes: string;
+  phone: string;
+  province: string;
+  secondName: string;
+  streetName: string;
+  unit: string;
+  zip: string;
+}
 function CheckoutComponent() {
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => {
+    return state.products;
+  });
+  const cart = useAppSelector((state) => {
+    return state.cart;
+  });
+
+  const shipping = useAppSelector((state) => {
+    return state.shipping.shipping;
+  });
+
+  const checkoutData = useAppSelector((state) => {
+    return state.checkout;
+  });
+
+  const handleChange = (value: string) => {
+    dispatch(setShipping(value));
+  };
+
+  const countTotal = () => {
+    let total = cart.reduce((acc, item) => {
+      const product = products.find((p) => p.id === item.productId);
+      if (product) {
+        return acc + product.price * item.productQuantity;
+      }
+      return acc;
+    }, 0);
+    return total;
+  };
+
+  const manageInput = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    dispatch(updateField({ field: name as keyof CheckoutState, value }));
+  };
+
+  useEffect(() => {
+    const countryInput = document.querySelector<HTMLInputElement>(
+      'input[name="country"]'
+    );
+    const provinceInput = document.querySelector<HTMLInputElement>(
+      'select[name="province"]'
+    );
+    if (countryInput) {
+      manageInput({
+        target: { name: "country", value: countryInput.value },
+      } as React.ChangeEvent<HTMLInputElement>);
+    }
+    if (provinceInput) {
+      manageInput({
+        target: { name: "province", value: provinceInput.value },
+      } as React.ChangeEvent<HTMLInputElement>);
+    }
+  }, []);
+
+  const submitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", checkoutData);
+  };
   return (
     <section>
       <div className="container" style={{ fontFamily: "Roboto" }}>
         <div className="d-flex justify-content-center gap-5 p-5">
+          {/* CHECKOUT FORM */}
           <div className="col-md-7 col-lg-8" style={{ width: "57%" }}>
             <div
               className="fs-5 fw-semibold py-3"
@@ -10,7 +93,7 @@ function CheckoutComponent() {
             >
               Customer information
             </div>
-            <form>
+            <form onSubmit={submitForm}>
               <div className="row g-3">
                 <div className="col-12 form-floating">
                   <input
@@ -18,7 +101,9 @@ function CheckoutComponent() {
                     className="form-control"
                     required
                     id="email"
+                    name="email"
                     placeholder="Username or Email address *"
+                    onChange={manageInput}
                   />
                   <label htmlFor="email" style={{ paddingLeft: "20px" }}>
                     Username or Email address{" "}
@@ -42,6 +127,8 @@ function CheckoutComponent() {
                     className="form-control"
                     id="first-name"
                     required
+                    name="firstName"
+                    onChange={manageInput}
                     placeholder="First name *"
                   />
                   <label htmlFor="first-name" style={{ paddingLeft: "20px" }}>
@@ -54,9 +141,11 @@ function CheckoutComponent() {
                 <div className="col-sm-6 form-floating">
                   <input
                     type="text"
-                    id="last-name"
+                    id="second-name"
                     className="form-control"
                     required
+                    name="secondName"
+                    onChange={manageInput}
                     placeholder="Last name *"
                   />
                   <label htmlFor="last-name" style={{ paddingLeft: "20px" }}>
@@ -72,6 +161,8 @@ function CheckoutComponent() {
                     className="form-control"
                     id="company-name"
                     required
+                    name="companyName"
+                    onChange={manageInput}
                     placeholder="Company Name *"
                   />
                   <label htmlFor="company-name" style={{ paddingLeft: "20px" }}>
@@ -89,15 +180,17 @@ function CheckoutComponent() {
                       fontFamily: "Barlow Semi Condensed",
                       color: "#3a3a3a",
                     }}
-                    readOnly
                     id="region"
                     required
+                    onChange={manageInput}
+                    name="country"
                     placeholder="County/Region *"
+                    readOnly
                     value="South Africa"
                   />
 
                   <label htmlFor="region" style={{ paddingLeft: "20px" }}>
-                    Company/Region{" "}
+                    Country/Region{" "}
                     <span className="fw-bold" style={{ color: "red" }}>
                       *
                     </span>
@@ -108,7 +201,9 @@ function CheckoutComponent() {
                     type="text"
                     className="form-control"
                     required
-                    id="house-number"
+                    id="street-name"
+                    onChange={manageInput}
+                    name="streetName"
                     placeholder="House number and street name *"
                   />
                   <label htmlFor="house-number" style={{ paddingLeft: "20px" }}>
@@ -123,6 +218,8 @@ function CheckoutComponent() {
                     type="text"
                     id="unit-address"
                     className="form-control"
+                    name="unit"
+                    onChange={manageInput}
                     placeholder="Apartment, suite, unit etc (optional)"
                   />
                   <label htmlFor="unit-address" style={{ paddingLeft: "20px" }}>
@@ -135,6 +232,8 @@ function CheckoutComponent() {
                     id="town"
                     className="form-control"
                     required
+                    name="city"
+                    onChange={manageInput}
                     placeholder="Town / City *"
                   />
                   <label htmlFor="town" style={{ paddingLeft: "20px" }}>
@@ -158,12 +257,16 @@ function CheckoutComponent() {
                   <select
                     id="province"
                     required
+                    name="province"
+                    onChange={manageInput}
+                    defaultValue="northern-cape"
                     className="form-control form-select border-0 w-100"
                   >
-                    <option selected>Northern Cape</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="northern_cape">Northern Cape</option>
+                    <option value="eastern_cape">Eastern Cape</option>
+                    <option value="free_state">Free State</option>
+                    <option value="north_west">North West</option>
+                    <option value="western_cape">Western Cape</option>
                   </select>
                 </div>
                 <div className="col-md-4 form-floating">
@@ -171,6 +274,8 @@ function CheckoutComponent() {
                     type="text"
                     id="ZIP"
                     required
+                    name="zip"
+                    onChange={manageInput}
                     className="form-control"
                     placeholder="Postcode / ZIP *"
                   />
@@ -183,9 +288,11 @@ function CheckoutComponent() {
                 </div>
                 <div className="col-12 form-floating">
                   <input
-                    type="number"
+                    type="string"
                     id="phone"
                     required
+                    name="phone"
+                    onChange={manageInput}
                     className="form-control"
                     placeholder="Phone *"
                   />
@@ -218,6 +325,8 @@ function CheckoutComponent() {
                     className="form-control"
                     placeholder="Notes about your order, e.g. special notes for delivery."
                     id="notes"
+                    name="notes"
+                    onChange={manageInput}
                     style={{ height: "100px" }}
                   ></textarea>
                   <label htmlFor="notes" style={{ paddingLeft: "20px" }}>
@@ -301,9 +410,15 @@ function CheckoutComponent() {
                     </span>
                   </label>
                 </div>
-                <button className="btn btn-dark rounded-0 w-100 p-3">
+                <button
+                  className="btn btn-dark rounded-0 w-100 p-3"
+                  type="submit"
+                >
                   <i className="bi bi-lock-fill"></i>
-                  Place order R1,980.00
+                  Place order R
+                  {shipping === "flat"
+                    ? (countTotal() + 75).toFixed(2)
+                    : countTotal().toFixed(2)}
                 </button>
                 <button className="btn btn-light rounded-0 w-100 pb-3">
                   <i className="bi bi-chevron-double-left"></i>
@@ -312,6 +427,7 @@ function CheckoutComponent() {
               </div>
             </form>
           </div>
+          {/* CART */}
           <div style={{ width: "40%" }}>
             <div style={{ position: "sticky", top: "10rem" }}>
               <div
@@ -341,35 +457,44 @@ function CheckoutComponent() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="align-middle">
-                    <td>
-                      <div className="d-flex justify-content-center align-items-center">
-                        <div className="d-flex flex-column justify-content-center align-items-center py-3">
-                          <span>
-                            {" "}
-                            <img
-                              style={{ width: "55px" }}
-                              src="https://theaceofblades.co.za/wp-content/uploads/IMG_5745-300x300.jpg"
-                              alt=""
-                            />
-                          </span>
-                          <span>x1</span>
-                        </div>
-                        <div className="p-2" style={{ color: "#4b4f58" }}>
-                          AOB-2452 Handmade Damascus Chef's Knife
-                        </div>
-                      </div>
-                    </td>
-                    <td className="p-3 text-end" style={{ color: "#4b4f58" }}>
-                      R990.00
-                    </td>
-                  </tr>
+                  {cart.map((item) =>
+                    products.map((p) =>
+                      p.id === item.productId ? (
+                        <tr className="align-middle" key={item.productId}>
+                          <td>
+                            <div className="d-flex justify-content-start align-items-center">
+                              <div className="d-flex flex-column justify-content-center align-items-center py-1">
+                                <span>
+                                  {" "}
+                                  <img
+                                    style={{ width: "55px" }}
+                                    src={p.images[0]}
+                                    alt=""
+                                  />
+                                </span>
+                                <span>x{item.productQuantity}</span>
+                              </div>
+                              <div className="p-2" style={{ color: "#4b4f58" }}>
+                                {p.name}
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            className="p-3 text-end"
+                            style={{ color: "#4b4f58" }}
+                          >
+                            R{p.price * item.productQuantity}
+                          </td>
+                        </tr>
+                      ) : null
+                    )
+                  )}
                   <tr className="align-middle">
                     <td className="p-3" style={{ color: "#4b4f58" }}>
                       Subtotal
                     </td>
                     <td className="text-end p-3" style={{ color: "#4b4f58" }}>
-                      R1,980.00
+                      R{countTotal()}
                     </td>
                   </tr>
                   <tr className="align-middle">
@@ -377,7 +502,7 @@ function CheckoutComponent() {
                       Shipping
                     </td>
                     <td className="py-3">
-                      <div className="d-flex justify-content-end">
+                      <div className="d-flex justify-content-end align-items-end">
                         <div
                           className="form-check p-2"
                           style={{ width: "max-content" }}
@@ -387,6 +512,9 @@ function CheckoutComponent() {
                             type="radio"
                             name="radioDefault"
                             id="radioDefault1"
+                            checked={shipping === "free"}
+                            value="free"
+                            onChange={(e) => handleChange(e.target.value)}
                           />
                           <label
                             className="form-check-label"
@@ -402,9 +530,13 @@ function CheckoutComponent() {
                       >
                         <input
                           className="form-check-input"
+                          style={{ marginLeft: "15rem" }}
                           type="radio"
                           name="radioDefault"
                           id="radioDefault2"
+                          checked={shipping === "flat"}
+                          value="flat"
+                          onChange={(e) => handleChange(e.target.value)}
                         />
                         <label
                           className="form-check-label"
@@ -420,7 +552,10 @@ function CheckoutComponent() {
                       Total
                     </td>
                     <td className="text-end p-3" style={{ color: "#4b4f58" }}>
-                      R1,980.00
+                      R
+                      {shipping === "flat"
+                        ? (countTotal() + 75).toFixed(2)
+                        : countTotal().toFixed(2)}
                     </td>
                   </tr>
                 </tbody>

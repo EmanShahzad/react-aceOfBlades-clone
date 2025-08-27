@@ -45,6 +45,7 @@ function RelatedProducts({ products, categories, item }: RelatedProductsProps) {
             {products.map((product) =>
               product !== item && product.categoryId === item?.categoryId ? (
                 <div
+                  key={item.id}
                   className="d-flex flex-column w-25 h-auto mr-1"
                   style={{
                     maxWidth: "24%",

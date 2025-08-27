@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter } from "react-router-dom";
-import { CartProvider } from "./components/CartManager";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
@@ -17,9 +16,7 @@ root.render(
   <BrowserRouter>
     <React.StrictMode>
       <Provider store={store}>
-        <CartProvider>
-          <App />
-        </CartProvider>
+        <App />
       </Provider>
     </React.StrictMode>
   </BrowserRouter>

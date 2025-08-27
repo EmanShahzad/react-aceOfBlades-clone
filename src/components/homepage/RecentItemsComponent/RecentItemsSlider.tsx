@@ -1,16 +1,19 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import type { Swiper as SwiperType } from "swiper";
-import { useAppSelector } from "../../../redux/hooks";
-
+import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./RecentItemsSlider.css";
 import { NavLink } from "react-router-dom";
+import { addToCart } from "../../../redux/features/cart/CartSlice";
 
 export default function RecentItemsSlider() {
   const products = useAppSelector((state) => state.products);
+  const dispatch = useAppDispatch();
+  const addItem = (itemId: string, quantity: number) => {
+    dispatch(addToCart({ itemId, quantity }));
+  };
   return (
     <div
       className="d-flex justify-content-center flex-column"
@@ -68,6 +71,9 @@ export default function RecentItemsSlider() {
                     <button
                       className="btn btn-outline-secondary rounded-0 py-2 text-black text-uppercase border-2"
                       style={{ width: "35%", fontSize: "smaller" }}
+                      onClick={() => {
+                        addItem(item.id, 1);
+                      }}
                     >
                       Add to cart
                     </button>
