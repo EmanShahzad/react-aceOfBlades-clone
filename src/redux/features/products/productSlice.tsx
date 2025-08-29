@@ -1,7 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
-import { useState } from "react";
+import { RootState } from "../../store";
+import { where, query } from "firebase/firestore";
 
 interface ProductState {
   id: string;
@@ -29,6 +37,81 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const addProduct = createAsyncThunk(
+  "products/addProduct",
+  async (newProduct: Omit<ProductState, "id">) => {
+    try {
+      const q = query(
+        collection(db, "products"),
+        where("name", "==", newProduct.name),
+        where("categoryId", "==", newProduct.categoryId)
+      );
+
+      const querySnapshot = await getDocs(q);
+      if (!querySnapshot.empty) {
+        alert("Product already exists!");
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
+    const docRef = await addDoc(collection(db, "products"), newProduct);
+    return { id: docRef.id, ...newProduct };
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "product/deleteProduct",
+  async (productId: string) => {
+    const docRef = doc(db, "products", productId);
+    console.log("doing");
+    await deleteDoc(docRef);
+    return productId;
+  }
+);
+
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async (product: ProductState, { getState }) => {
+    const productRef = doc(db, "products", product.id);
+
+    console.log("ok");
+    const state: RootState = getState() as RootState;
+    const categories = state.categories;
+    if (categories.find((cat) => cat.id === product.categoryId)) {
+      if (product.images[0] === "")
+        product.images[0] =
+          "https://theaceofblades.co.za/wp-content/uploads/woocommerce-placeholder-600x600.png";
+      if (product.newPrice) {
+        product.isOnSale = true;
+        await updateDoc(productRef, {
+          name: product.name,
+          price: product.price,
+          isOnSale: product.isOnSale,
+          newPrice: product.newPrice ?? null,
+          stock: product.stock,
+          categoryId: product.categoryId,
+          specifications: product.specifications,
+          images: product.images,
+        });
+      } else {
+        product.isOnSale = false;
+        await updateDoc(productRef, {
+          name: product.name,
+          price: product.price,
+          isOnSale: product.isOnSale,
+          newPrice: null,
+          stock: product.stock,
+          categoryId: product.categoryId,
+          specifications: product.specifications,
+          images: product.images,
+        });
+      }
+    } else {
+      alert("Category does not exist!!!");
+    }
+    return product;
+  }
+);
 export const productSlice = createSlice({
   name: "products",
   initialState,
@@ -36,6 +119,19 @@ export const productSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       return action.payload;
+    });
+    builder.addCase(addProduct.fulfilled, (state, action) => {
+      state.push(action.payload);
+    });
+    builder.addCase(deleteProduct.fulfilled, (state, action) => {
+      return state.filter((p) => p.id !== action.payload);
+    });
+    builder.addCase(updateProduct.fulfilled, (state, action) => {
+      console.log("uploaded", action.payload);
+      const index = state.findIndex((p) => p.id === action.payload.id);
+      if (index !== -1) {
+        state[index] = action.payload;
+      }
     });
   },
 });

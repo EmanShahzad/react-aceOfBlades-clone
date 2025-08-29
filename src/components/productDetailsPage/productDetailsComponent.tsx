@@ -166,7 +166,11 @@ function ProductDetailsComponent({
               </div>
               <div style={{ color: "green" }} className="py-2">
                 <strong style={{ color: "#4B4F58" }}>Availability:</strong>{" "}
-                <span>{item?.stock}</span> in stock
+                {item?.stock === 0 ? (
+                  <span style={{ color: "red" }}>Out of Stock</span>
+                ) : (
+                  <span>{item?.stock} in stock</span>
+                )}
               </div>
               <div
                 className="d-flex gap-4 px-2 py-3"

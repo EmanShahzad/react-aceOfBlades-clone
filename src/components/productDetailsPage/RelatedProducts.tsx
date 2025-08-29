@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { addToCart } from "../../redux/features/cart/CartSlice";
 
 interface ProductState {
   id: string;
@@ -28,6 +30,11 @@ function RelatedProducts({ products, categories, item }: RelatedProductsProps) {
   function categoryName(item: ProductState) {
     return categories.find((c) => c.id === item.categoryId)?.name;
   }
+
+  const dispatch = useAppDispatch();
+  const addItem = (itemId: string, quantity: number) => {
+    dispatch(addToCart({ itemId, quantity }));
+  };
   return (
     <div className="d-flex justify-content-center flex-column pb-5">
       <div className="container">
@@ -74,7 +81,12 @@ function RelatedProducts({ products, categories, item }: RelatedProductsProps) {
                     </span>
 
                     <span className="d-flex justify-content-center my-3">
-                      <button className="btn btn-dark rounded-0 px-4">
+                      <button
+                        className="btn btn-dark rounded-0 px-4"
+                        onClick={() => {
+                          if (product.id) addItem(product.id, 1);
+                        }}
+                      >
                         Add to cart
                       </button>
                     </span>

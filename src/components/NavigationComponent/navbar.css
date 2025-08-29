@@ -7,3 +7,9 @@
   display: block;
   margin-top: 0;
 }
+
+.nav-link.active,
+.dropdown-item.active {
+  background-color: transparent !important;
+  color: inherit !important;
+}

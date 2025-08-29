@@ -1,7 +1,8 @@
 import TitleSection from "../components/TitleComponent/TitleSection";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { useParams } from "react-router-dom";
+import { addToCart } from "../redux/features/cart/CartSlice";
 
 function ProductsDisplay() {
   const products = useAppSelector((state) => state.products);
@@ -10,6 +11,11 @@ function ProductsDisplay() {
   });
   const { categoryId } = useParams<{ categoryId: string }>();
   const category = categories.find((x) => x.id === categoryId);
+
+  const dispatch = useAppDispatch();
+  const addItem = (itemId: string, quantity: number) => {
+    dispatch(addToCart({ itemId, quantity }));
+  };
 
   return (
     <>
@@ -55,7 +61,12 @@ function ProductsDisplay() {
                       </span>
 
                       <span className="d-flex justify-content-center my-3">
-                        <button className="btn btn-dark rounded-0 px-4">
+                        <button
+                          className="btn btn-dark rounded-0 px-4"
+                          onClick={() => {
+                            if (product.id) addItem(product.id, 1);
+                          }}
+                        >
                           Add to cart
                         </button>
                       </span>

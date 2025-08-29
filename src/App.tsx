@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { fetchCategories } from "./redux/features/categories/CategorySlice";
 import { fetchProducts } from "./redux/features/products/productSlice";
 import { useAppDispatch } from "./redux/hooks";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -33,6 +34,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/:categoryId" element={<ProductsDisplay />} />
+          <Route path="/adminView" element={<AdminPanel />} />
         </Routes>
         <Footer />
       </div>

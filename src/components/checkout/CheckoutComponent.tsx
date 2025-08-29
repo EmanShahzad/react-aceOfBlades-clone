@@ -2,6 +2,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { setShipping } from "../../redux/features/cart/ShippingSlice";
 import { updateField } from "../../redux/features/checkout/CheckoutSlice";
 import React, { useEffect, useRef } from "react";
+import { addOrder } from "../../redux/features/order/OrderSlice";
 
 interface CheckoutState {
   city: string;
@@ -80,6 +81,11 @@ function CheckoutComponent() {
   const submitForm = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", checkoutData);
+    dispatch(addOrder())
+      .unwrap()
+      .then((orderId) => {
+        console.log("Order placed successfully with ID:", orderId);
+      });
   };
   return (
     <section>

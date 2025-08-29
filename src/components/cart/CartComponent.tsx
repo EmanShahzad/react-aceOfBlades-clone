@@ -6,9 +6,11 @@ import {
 } from "../../redux/features/cart/CartSlice";
 import { NavLink } from "react-router-dom";
 import { setShipping } from "../../redux/features/cart/ShippingSlice";
+import { cartSubtotal } from "../../redux/features/cart/cartSubtotalSelector";
 
 function CartComponent() {
   const dispatch = useAppDispatch();
+  const countTotal = useAppSelector(cartSubtotal);
   const cart = useAppSelector((state) => {
     return state.cart;
   });
@@ -20,17 +22,17 @@ function CartComponent() {
     console.log(cart);
   }, [cart]);
 
-  const countTotal = () => {
-    let total = cart.reduce((acc, item) => {
-      const product = products.find((p) => p.id === item.productId);
-      if (product) {
-        return acc + product.price * item.productQuantity;
-      }
-      return acc;
-    }, 0);
+  // const countTotal = () => {
+  //   let total = cart.reduce((acc, item) => {
+  //     const product = products.find((p) => p.id === item.productId);
+  //     if (product) {
+  //       return acc + product.price * item.productQuantity;
+  //     }
+  //     return acc;
+  //   }, 0);
 
-    return total;
-  };
+  //   return total;
+  // };
 
   const handleChange = (value: string) => {
     dispatch(setShipping(value));
@@ -147,7 +149,7 @@ function CartComponent() {
               <tbody>
                 <tr className="align-middle">
                   <td className="py-4">Subtotal</td>
-                  <td>R{countTotal().toFixed(2)}</td>
+                  <td>R{countTotal.toFixed(2)}</td>
                 </tr>
                 <tr className="align-middle">
                   <td className="py-4">Shipping</td>
@@ -190,8 +192,8 @@ function CartComponent() {
                   <td>
                     R
                     {shipping === "flat"
-                      ? (countTotal() + 75).toFixed(2)
-                      : countTotal().toFixed(2)}
+                      ? (countTotal + 75).toFixed(2)
+                      : countTotal.toFixed(2)}
                   </td>
                 </tr>
               </tbody>
