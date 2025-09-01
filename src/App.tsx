@@ -11,14 +11,17 @@ import ProductDetails from "./pages/ProductDetails";
 import ProductsDisplay from "./pages/ProductsDisplay";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchCategories } from "./redux/features/categories/CategorySlice";
 import { fetchProducts } from "./redux/features/products/productSlice";
 import { useAppDispatch } from "./redux/hooks";
 import AdminPanel from "./pages/AdminPanel";
+import Login from "./components/login/Login";
 
 function App() {
   const dispatch = useAppDispatch();
+  let [view, setView] = useState<string>("login");
+
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchProducts());
@@ -26,10 +29,12 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Header />
-        <NavBar />
+        {view !== "login" ? <Header /> : null}
+
+        <NavBar view={view} setView={setView} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login view={view} setView={setView} />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:id" element={<ProductDetails />} />

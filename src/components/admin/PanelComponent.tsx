@@ -86,7 +86,7 @@ function PanelComponent() {
               <tbody className="table-group-divider">
                 {products.map((item) => (
                   <>
-                    <tr>
+                    <tr key={item.id}>
                       <td>
                         <img
                           style={{

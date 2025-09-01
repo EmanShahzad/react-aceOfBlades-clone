@@ -30,6 +30,9 @@ function AddProduct(props: {
 
   const manageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    if (name === "stock") {
+      if (value < "0") return;
+    }
     if (name === "image-address") {
       setNewItem((prev: ProductState) => {
         return {

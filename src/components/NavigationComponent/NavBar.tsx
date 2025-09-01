@@ -1,10 +1,25 @@
 import "./navbar.css";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-function NavBar() {
-  let [view, setView] = useState<string>("customer");
+type NavBarProps = {
+  view: string;
+  setView: React.Dispatch<React.SetStateAction<string>>;
+};
+function NavBar({ view, setView }: NavBarProps) {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/adminView") {
+      setView("admin");
+    } else if (location.pathname === "/home") {
+      setView("customer");
+    } else {
+      setView("login");
+    }
+  }, [location.pathname, setView]);
   const categories = useAppSelector((state) => {
     return state.categories;
   });
@@ -30,7 +45,7 @@ function NavBar() {
       <div className="container">
         <div className="d-flex gap-4 justify-content-between align-items-center px-5 py-2">
           <div className="d-flex my-2 flex-column justify-content-center align-items-center">
-            <NavLink to={"/"}>
+            <NavLink to={"/home"}>
               <img
                 className=""
                 style={{ width: "90px" }}
@@ -141,24 +156,13 @@ function NavBar() {
                   <ul className="dropdown-menu p-2">
                     <li>
                       <NavLink
-                        to={"/adminView"}
+                        to={"/"}
                         className="dropdown-item fs-italics"
                         onClick={() => {
-                          setView("admin");
+                          setView("login");
                         }}
                       >
-                        Admin Panel
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to={"/"}
-                        className="dropdown-item"
-                        onClick={() => {
-                          setView("customer");
-                        }}
-                      >
-                        Customer Panel
+                        Change Role
                       </NavLink>
                     </li>
                   </ul>
@@ -174,6 +178,39 @@ function NavBar() {
                     <span className="visually-hidden">cart items count</span>
                   </span>
                 </NavLink>
+              </div>
+            </>
+          ) : view === "login" ? (
+            <>
+              <div className="d-flex flex-column align-items-center">
+                <h3 style={{ fontFamily: "Oswald" }}>Ace of Blades</h3>
+                <span>Login Here</span>
+              </div>
+              <div className="d-flex gap-2">
+                <div className="dropdown">
+                  <button
+                    className="btn"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i className="bi bi-person-circle fs-4"></i>
+                  </button>
+
+                  <ul className="dropdown-menu p-2">
+                    <li>
+                      <NavLink
+                        to={"/"}
+                        className="dropdown-item fs-italics"
+                        onClick={() => {
+                          setView("login");
+                        }}
+                      >
+                        Login Page
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </>
           ) : (
@@ -198,24 +235,13 @@ function NavBar() {
                   <ul className="dropdown-menu p-2">
                     <li>
                       <NavLink
-                        to={"/adminView"}
+                        to={"/"}
                         className="dropdown-item fs-italics"
                         onClick={() => {
-                          setView("admin");
+                          setView("login");
                         }}
                       >
-                        Admin Panel
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to={"/"}
-                        className="dropdown-item"
-                        onClick={() => {
-                          setView("customer");
-                        }}
-                      >
-                        Customer Panel
+                        Login Page
                       </NavLink>
                     </li>
                   </ul>

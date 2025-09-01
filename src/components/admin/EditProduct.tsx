@@ -37,6 +37,12 @@ function EditProduct(props: {
   }, [props.item]);
   const manageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    if (name === "stock") {
+      if (value < "0") {
+        alert("stock cannot be negative. Go!");
+        return;
+      }
+    }
     if (name === "image-address") {
       setNewItem((prev: ProductState) => {
         return {
