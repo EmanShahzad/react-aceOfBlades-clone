@@ -7,6 +7,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { setShipping } from "../../redux/features/cart/ShippingSlice";
 import { cartSubtotal } from "../../redux/features/cart/cartSubtotalSelector";
+import { removeFromCart } from "../../redux/features/cart/CartSlice";
 
 function CartComponent() {
   const dispatch = useAppDispatch();
@@ -78,7 +79,12 @@ function CartComponent() {
                     p.id === item.productId ? (
                       <tr className="align-middle">
                         <th scope="row">
-                          <i className="bi bi-x-circle text-secondary fs-5"></i>
+                          <i
+                            className="bi bi-x-circle text-secondary fs-5"
+                            onClick={() =>
+                              dispatch(removeFromCart({ itemId: p.id }))
+                            }
+                          ></i>
                         </th>
                         <td className="w-auto">
                           <img

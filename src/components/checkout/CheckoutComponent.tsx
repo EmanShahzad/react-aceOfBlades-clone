@@ -3,6 +3,7 @@ import { setShipping } from "../../redux/features/cart/ShippingSlice";
 import { updateField } from "../../redux/features/checkout/CheckoutSlice";
 import React, { useEffect, useRef } from "react";
 import { addOrder } from "../../redux/features/order/OrderSlice";
+import { resetCart } from "../../redux/features/cart/CartSlice";
 
 interface CheckoutState {
   city: string;

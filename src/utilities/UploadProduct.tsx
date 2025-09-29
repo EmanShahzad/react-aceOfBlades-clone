@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "./firebase";
+import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
 
 type Product = {

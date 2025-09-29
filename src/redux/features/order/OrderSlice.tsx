@@ -82,6 +82,8 @@ export const addOrder = createAsyncThunk(
       cartInfo: { products: products, cartSubtotal: cartSubtotal(state) },
     };
 
+    console.log(OrderState, " stored structure");
+
     const docRef = await addDoc(collection(db, "orders"), OrderState);
     for (const item of products) {
       const productRef = doc(db, "products", item.productId);

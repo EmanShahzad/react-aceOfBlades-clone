@@ -14,10 +14,10 @@ function NavBar({ view, setView }: NavBarProps) {
   useEffect(() => {
     if (location.pathname === "/adminView") {
       setView("admin");
-    } else if (location.pathname === "/home") {
-      setView("customer");
-    } else {
+    } else if (location.pathname === "/") {
       setView("login");
+    } else {
+      setView("customer");
     }
   }, [location.pathname, setView]);
   const categories = useAppSelector((state) => {
@@ -44,21 +44,21 @@ function NavBar({ view, setView }: NavBarProps) {
     >
       <div className="container">
         <div className="d-flex gap-4 justify-content-between align-items-center px-5 py-2">
-          <div className="d-flex my-2 flex-column justify-content-center align-items-center">
-            <NavLink to={"/home"}>
-              <img
-                className=""
-                style={{ width: "90px" }}
-                src="https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-Blades-Logo200.jpg"
-                alt="logo"
-              />
-            </NavLink>
-            <span style={{ fontSize: "smaller" }} className="fw-bold">
-              The Ace of Blades
-            </span>
-          </div>
           {view === "customer" ? (
             <>
+              <div className="d-flex my-2 flex-column justify-content-center align-items-center">
+                <NavLink to={"/home"}>
+                  <img
+                    className=""
+                    style={{ width: "90px" }}
+                    src="https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-Blades-Logo200.jpg"
+                    alt="logo"
+                  />
+                </NavLink>
+                <span style={{ fontSize: "smaller" }} className="fw-bold">
+                  The Ace of Blades
+                </span>
+              </div>
               <div className="">
                 <nav className="navbar ">
                   <div className="container-fluid">
@@ -67,7 +67,7 @@ function NavBar({ view, setView }: NavBarProps) {
                       style={{ fontFamily: "Roboto" }}
                     >
                       <li className="nav-item me-3">
-                        <NavLink className="nav-link" to="/">
+                        <NavLink className="nav-link" to="/home">
                           Home
                         </NavLink>
                       </li>
@@ -182,6 +182,18 @@ function NavBar({ view, setView }: NavBarProps) {
             </>
           ) : view === "login" ? (
             <>
+              <div className="d-flex my-2 flex-column justify-content-center align-items-center">
+                <img
+                  className=""
+                  style={{ width: "90px" }}
+                  src="https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-Blades-Logo200.jpg"
+                  alt="logo"
+                />
+
+                <span style={{ fontSize: "smaller" }} className="fw-bold">
+                  The Ace of Blades
+                </span>
+              </div>
               <div className="d-flex flex-column align-items-center">
                 <h3 style={{ fontFamily: "Oswald" }}>Ace of Blades</h3>
                 <span>Login Here</span>
@@ -215,6 +227,18 @@ function NavBar({ view, setView }: NavBarProps) {
             </>
           ) : (
             <>
+              <div className="d-flex my-2 flex-column justify-content-center align-items-center">
+                <img
+                  className=""
+                  style={{ width: "90px" }}
+                  src="https://theaceofblades.co.za/wp-content/uploads/2023/06/Ace-of-Blades-Logo200.jpg"
+                  alt="logo"
+                />
+
+                <span style={{ fontSize: "smaller" }} className="fw-bold">
+                  The Ace of Blades
+                </span>
+              </div>
               <div className="d-flex flex-column align-items-center">
                 <h3 style={{ fontFamily: "Oswald" }}>
                   Ace of Blades Command Center
