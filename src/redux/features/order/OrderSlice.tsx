@@ -70,27 +70,34 @@ export const addOrder = createAsyncThunk(
   "orders/createOrder",
   async (_, { getState }) => {
     const state: RootState = getState() as RootState;
-    const products = state.cart;
-    const cart = state.checkout;
-    const shipping = state.shipping.shipping;
-    const userId = "guest";
+    // const products = state.cart;
+    // const cart = state.checkout;
+    // const shipping = state.shipping.shipping;
+    // const userId = "guest";
+
+    // const OrderState = {
+    //   checkoutInfo: cart,
+    //   shipping: shipping,
+    //   userId: userId,
+    //   cartInfo: { products: products, cartSubtotal: cartSubtotal(state) },
+    // };
 
     const OrderState = {
-      checkoutInfo: cart,
-      shipping: shipping,
-      userId: userId,
-      cartInfo: { products: products, cartSubtotal: cartSubtotal(state) },
+      checkoutInfo: "this is cart info",
+      shipping: "shipping data",
+      userId: "guest",
+      cartInfo: "these are products",
     };
 
     console.log(OrderState, " stored structure");
 
     const docRef = await addDoc(collection(db, "orders"), OrderState);
-    for (const item of products) {
-      const productRef = doc(db, "products", item.productId);
-      await updateDoc(productRef, {
-        stock: increment(-item.productQuantity),
-      });
-    }
+    // for (const item of products) {
+    //   const productRef = doc(db, "products", item.productId);
+    //   await updateDoc(productRef, {
+    //     stock: increment(-item.productQuantity),
+    //   });
+    // }
     return { id: docRef.id, ...OrderState };
   }
 );
@@ -101,8 +108,8 @@ const OrderSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addOrder.fulfilled, (state, action) => {
-      state.checkoutInfo = action.payload.checkoutInfo;
-      state.cartInfo = action.payload.cartInfo;
+      // state.checkoutInfo = action.payload.checkoutInfo;
+      // state.cartInfo = action.payload.cartInfo;
       state.shipping = action.payload.shipping;
       state.userId = action.payload.userId;
       state.id = action.payload.id;

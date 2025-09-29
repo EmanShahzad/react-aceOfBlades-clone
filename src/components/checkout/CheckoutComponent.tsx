@@ -86,6 +86,7 @@ function CheckoutComponent() {
       .unwrap()
       .then((orderId) => {
         console.log("Order placed successfully with ID:", orderId);
+        dispatch(resetCart());
       });
   };
   return (
