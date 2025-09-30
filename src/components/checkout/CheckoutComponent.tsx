@@ -3,6 +3,8 @@ import { setShipping } from "../../redux/features/cart/ShippingSlice";
 import { updateField } from "../../redux/features/checkout/CheckoutSlice";
 import React, { useEffect, useRef } from "react";
 import { addOrder } from "../../redux/features/order/OrderSlice";
+import { resetCart } from "../../redux/features/cart/CartSlice";
+import { error } from "console";
 
 interface CheckoutState {
   city: string;
@@ -86,6 +88,11 @@ function CheckoutComponent() {
       .then((orderId) => {
         console.log("Order placed successfully with ID:", orderId);
         dispatch(resetCart());
+      })
+      .catch((err) => {
+        if (err !== "Cart is empty") {
+          console.error("Order failed:", err);
+        }
       });
   };
   return (
