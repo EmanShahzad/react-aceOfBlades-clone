@@ -14,10 +14,10 @@ function NavBar({ view, setView }: NavBarProps) {
   useEffect(() => {
     if (location.pathname === "/adminView") {
       setView("admin");
-    } else if (location.pathname === "/home") {
-      setView("customer");
-    } else {
+    } else if (location.pathname === "/") {
       setView("login");
+    } else {
+      setView("customer");
     }
   }, [location.pathname, setView]);
   const categories = useAppSelector((state) => {

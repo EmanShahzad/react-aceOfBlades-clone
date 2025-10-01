@@ -9,15 +9,22 @@ interface CategoryState {
 }
 
 const initialState: CategoryState[] = [];
+const categories: CategoryState[] = [];
 
 export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
   async () => {
-    const response = await getDocs(collection(db, "categories"));
-    const categories: CategoryState[] = [];
-    response.forEach((item) => {
-      categories.push({ ...(item.data() as CategoryState) });
-    });
+    console.log("calling");
+    try {
+      const response = await getDocs(collection(db, "categories"));
+
+      response.forEach((item) => {
+        categories.push({ ...(item.data() as CategoryState) });
+      });
+    } catch (err) {
+      console.log(err, "fetching cateogires");
+      throw err;
+    }
     return categories;
   }
 );

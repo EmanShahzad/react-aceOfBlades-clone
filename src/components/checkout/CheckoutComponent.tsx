@@ -3,7 +3,7 @@ import { setShipping } from "../../redux/features/cart/ShippingSlice";
 import { updateField } from "../../redux/features/checkout/CheckoutSlice";
 import React, { useEffect, useRef } from "react";
 import { addOrder } from "../../redux/features/order/OrderSlice";
-import { resetCart } from "../../redux/features/cart/CartSlice";
+import { removeFromCart, resetCart } from "../../redux/features/cart/CartSlice";
 import { error } from "console";
 
 interface CheckoutState {
@@ -477,6 +477,14 @@ function CheckoutComponent() {
                         <tr className="align-middle" key={item.productId}>
                           <td>
                             <div className="d-flex justify-content-start align-items-center">
+                              <span>
+                                <i
+                                  className="bi bi-x-circle text-secondary fs-5"
+                                  onClick={() => {
+                                    dispatch(removeFromCart({ itemId: p.id }));
+                                  }}
+                                ></i>
+                              </span>
                               <div className="d-flex flex-column justify-content-center align-items-center py-1">
                                 <span>
                                   {" "}

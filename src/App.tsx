@@ -9,8 +9,6 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import ProductDetails from "./pages/ProductDetails";
 import ProductsDisplay from "./pages/ProductsDisplay";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
 import { useEffect, useState } from "react";
 import { fetchCategories } from "./redux/features/categories/CategorySlice";
 import { fetchProducts } from "./redux/features/products/productSlice";
@@ -27,23 +25,21 @@ function App() {
     dispatch(fetchProducts());
   }, [dispatch]);
   return (
-    <Provider store={store}>
-      <div className="App">
-        {view !== "login" ? <Header /> : null}
+    <div className="App">
+      {view !== "login" ? <Header /> : null}
 
-        <NavBar view={view} setView={setView} />
-        <Routes>
-          <Route path="/" element={<Login view={view} setView={setView} />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/:categoryId" element={<ProductsDisplay />} />
-          <Route path="/adminView" element={<AdminPanel />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Provider>
+      <NavBar view={view} setView={setView} />
+      <Routes>
+        <Route path="/" element={<Login view={view} setView={setView} />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/:categoryId" element={<ProductsDisplay />} />
+        <Route path="/adminView" element={<AdminPanel />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 }
 

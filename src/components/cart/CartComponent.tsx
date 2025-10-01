@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import {
   increaseQuantity,
   decreaseQuantity,
+  removeFromCart,
 } from "../../redux/features/cart/CartSlice";
 import { NavLink } from "react-router-dom";
 import { setShipping } from "../../redux/features/cart/ShippingSlice";
@@ -78,7 +79,12 @@ function CartComponent() {
                     p.id === item.productId ? (
                       <tr className="align-middle">
                         <th scope="row">
-                          <i className="bi bi-x-circle text-secondary fs-5"></i>
+                          <i
+                            className="bi bi-x-circle text-secondary fs-5"
+                            onClick={() => {
+                              dispatch(removeFromCart({ itemId: p.id }));
+                            }}
+                          ></i>
                         </th>
                         <td className="w-auto">
                           <img
