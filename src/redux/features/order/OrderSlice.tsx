@@ -9,38 +9,7 @@ import {
   increment,
 } from "firebase/firestore";
 import { cartSubtotal } from "../cart/cartSubtotalSelector";
-interface CheckoutState {
-  city: string;
-  companyName: string;
-  country: string;
-  email: string;
-  firstName: string;
-  notes: string;
-  phone: string;
-  province: string;
-  secondName: string;
-  streetName: string;
-  unit: string;
-  zip: string;
-}
-
-interface CartProps {
-  productQuantity: number;
-  productId: string;
-}
-
-interface CartState {
-  products: CartProps[];
-  cartSubtotal: number;
-}
-
-interface OrderState {
-  id: string;
-  checkoutInfo: CheckoutState;
-  cartInfo: CartState;
-  shipping: string;
-  userId: string;
-}
+import { OrderState } from "../../../types/order";
 
 const initialState: OrderState = {
   id: "",

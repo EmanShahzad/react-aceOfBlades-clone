@@ -1,12 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
-
-interface CategoryState {
-  id: string;
-  name: string;
-  image: string;
-}
+import { CategoryState } from "../../../types/category";
 
 const initialState: CategoryState[] = [];
 const categories: CategoryState[] = [];

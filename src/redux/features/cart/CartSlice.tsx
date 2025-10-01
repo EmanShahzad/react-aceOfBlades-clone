@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-
-interface CartProps {
-  productQuantity: number;
-  productId: string;
-}
+import { CartProps } from "../../../types/cart";
 
 const initialState: CartProps[] = [];
 

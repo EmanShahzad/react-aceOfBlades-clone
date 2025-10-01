@@ -7,7 +7,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { persistor, store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,7 +17,9 @@ root.render(
   <BrowserRouter>
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={false} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </React.StrictMode>
   </BrowserRouter>

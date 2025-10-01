@@ -1,23 +1,15 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { addProduct } from "../../redux/features/products/productSlice";
+import { ProductState } from "../../types/products";
 
-interface ProductState {
-  name: string;
-  price: number;
-  isOnSale: boolean;
-  newPrice?: number;
-  stock: number;
-  categoryId: string;
-  specifications: string[];
-  images: string[];
-}
 function AddProduct(props: {
   adding: boolean;
   setAdding: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const dispatch = useAppDispatch();
   let [newItem, setNewItem] = useState<ProductState>({
+    id: "",
     name: "",
     price: 0,
     isOnSale: false,

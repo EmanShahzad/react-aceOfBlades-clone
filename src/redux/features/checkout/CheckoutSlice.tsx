@@ -1,20 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-
-interface CheckoutState {
-  city: string;
-  companyName: string;
-  country: string;
-  email: string;
-  firstName: string;
-  notes: string;
-  phone: string;
-  province: string;
-  secondName: string;
-  streetName: string;
-  unit: string;
-  zip: string;
-}
+import { CheckoutState } from "../../../types/checkout";
 
 const initialState: CheckoutState = {
   city: "",

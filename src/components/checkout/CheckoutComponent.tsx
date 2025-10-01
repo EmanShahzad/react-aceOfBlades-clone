@@ -5,21 +5,8 @@ import React, { useEffect, useRef } from "react";
 import { addOrder } from "../../redux/features/order/OrderSlice";
 import { removeFromCart, resetCart } from "../../redux/features/cart/CartSlice";
 import { error } from "console";
+import { CheckoutState } from "../../types/checkout";
 
-interface CheckoutState {
-  city: string;
-  companyName: string;
-  country: string;
-  email: string;
-  firstName: string;
-  notes: string;
-  phone: string;
-  province: string;
-  secondName: string;
-  streetName: string;
-  unit: string;
-  zip: string;
-}
 function CheckoutComponent() {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => {

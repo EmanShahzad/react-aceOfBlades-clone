@@ -1,24 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { addToCart } from "../../redux/features/cart/CartSlice";
-
-interface ProductState {
-  id: string;
-  name: string;
-  price: number;
-  isOnSale: boolean;
-  newPrice?: number;
-  stock: number;
-  categoryId: string;
-  specifications: string[];
-  images: string[];
-}
-
-interface CategoryState {
-  id: string;
-  name: string;
-  image: string;
-}
+import { ProductState } from "../../types/products";
+import { CategoryState } from "../../types/category";
 
 interface RelatedProductsProps {
   products: ProductState[];

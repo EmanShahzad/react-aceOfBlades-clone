@@ -10,18 +10,7 @@ import {
 import { db } from "../../../firebase/firebase";
 import { RootState } from "../../store";
 import { where, query } from "firebase/firestore";
-
-interface ProductState {
-  id: string;
-  name: string;
-  price: number;
-  isOnSale: boolean;
-  newPrice?: number;
-  stock: number;
-  categoryId: string;
-  specifications: string[];
-  images: string[];
-}
+import { ProductState } from "../../../types/products";
 
 const initialState: ProductState[] = [];
 
