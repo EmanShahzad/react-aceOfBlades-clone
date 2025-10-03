@@ -68,15 +68,21 @@ export default function RecentItemsSlider() {
                     >
                       {item.price}
                     </span>
-                    <button
-                      className="btn btn-outline-secondary rounded-0 py-2 text-black text-uppercase border-2"
-                      style={{ width: "35%", fontSize: "smaller" }}
-                      onClick={() => {
-                        addItem(item.id, 1);
-                      }}
-                    >
-                      Add to cart
-                    </button>
+                    {item.stock === 0 ? (
+                      <button className="btn btn-dark rounded-0 px-4">
+                        Out of Stock
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-outline-secondary rounded-0 py-2 text-black text-uppercase border-2"
+                        style={{ width: "35%", fontSize: "smaller" }}
+                        onClick={() => {
+                          addItem(item.id, 1);
+                        }}
+                      >
+                        Add to cart
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

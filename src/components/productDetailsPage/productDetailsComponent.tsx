@@ -194,16 +194,18 @@ function ProductDetailsComponent({
                     +
                   </button>
                 </div>
-                <div className="px-3">
-                  <button
-                    className="btn btn-dark rounded-0 px-3 py-2"
-                    onClick={() => {
-                      if (item?.id) addItem(item?.id);
-                    }}
-                  >
-                    Add to cart
-                  </button>
-                </div>
+                {item?.stock !== 0 ? (
+                  <div className="px-3">
+                    <button
+                      className="btn btn-dark rounded-0 px-3 py-2"
+                      onClick={() => {
+                        if (item?.id) addItem(item?.id);
+                      }}
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                ) : null}
               </div>
               <div className="py-3">
                 <span style={{ color: "#4B4F58" }} className="pe-2">

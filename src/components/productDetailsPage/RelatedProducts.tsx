@@ -65,14 +65,20 @@ function RelatedProducts({ products, categories, item }: RelatedProductsProps) {
                     </span>
 
                     <span className="d-flex justify-content-center my-3">
-                      <button
-                        className="btn btn-dark rounded-0 px-4"
-                        onClick={() => {
-                          if (product.id) addItem(product.id, 1);
-                        }}
-                      >
-                        Add to cart
-                      </button>
+                      {product.stock === 0 ? (
+                        <button className="btn btn-dark rounded-0 px-4">
+                          Out of Stock
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-dark rounded-0 px-4"
+                          onClick={() => {
+                            if (product.id) addItem(product.id, 1);
+                          }}
+                        >
+                          Add to cart
+                        </button>
+                      )}
                     </span>
                   </div>
                 </div>

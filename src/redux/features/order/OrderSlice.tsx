@@ -7,6 +7,7 @@ import {
   doc,
   updateDoc,
   increment,
+  getDoc,
 } from "firebase/firestore";
 import { cartSubtotal } from "../cart/cartSubtotalSelector";
 import { OrderState } from "../../../types/order";
@@ -52,17 +53,24 @@ export const addOrder = createAsyncThunk(
     };
 
     if (OrderState.cartInfo.products.length === 0) {
-      alert("your cart is empty!");
       return rejectWithValue("Cart is empty");
     }
 
     const docRef = await addDoc(collection(db, "orders"), OrderState);
+
     for (const item of products) {
       const productRef = doc(db, "products", item.productId);
-      await updateDoc(productRef, {
-        stock: increment(-item.productQuantity),
-      });
+      const productSnap = await getDoc(productRef);
+
+      if (productSnap.exists()) {
+        const currentStock = productSnap.data().stock;
+        if (currentStock > 0) {
+          const newStock = Math.max(0, currentStock - item.productQuantity);
+          await updateDoc(productRef, { stock: newStock });
+        }
+      }
     }
+
     return { id: docRef.id, ...OrderState };
   }
 );

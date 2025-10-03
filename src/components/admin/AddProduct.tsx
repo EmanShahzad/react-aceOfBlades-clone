@@ -23,7 +23,9 @@ function AddProduct(props: {
   const manageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === "stock") {
-      if (value < "0") return;
+      const numValue = Number(value);
+      if (numValue <= 0) console.log("negative stock found dont add");
+      return;
     }
     if (name === "image-address") {
       setNewItem((prev: ProductState) => {
@@ -36,7 +38,7 @@ function AddProduct(props: {
       setNewItem((prev: ProductState) => {
         return {
           ...prev,
-          [name]: value,
+          [name]: name === "stock" ? Number(value) : value,
         };
       });
     }

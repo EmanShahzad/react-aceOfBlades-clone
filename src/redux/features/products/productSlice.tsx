@@ -28,8 +28,14 @@ export const fetchProducts = createAsyncThunk(
 
 export const addProduct = createAsyncThunk(
   "products/addProduct",
-  async (newProduct: Omit<ProductState, "id">) => {
+  async (newProduct: Omit<ProductState, "id">, { rejectWithValue }) => {
     try {
+      // 🔹 Check stock
+      if (newProduct.stock <= 0) {
+        return rejectWithValue("Stock cannot be negative or zero!");
+      }
+
+      // 🔹 Check if product exists (name + category)
       const q = query(
         collection(db, "products"),
         where("name", "==", newProduct.name),
@@ -38,13 +44,16 @@ export const addProduct = createAsyncThunk(
 
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
-        alert("Product already exists!");
+        return rejectWithValue("Product already exists!");
       }
+
+      // 🔹 Add product
+      const docRef = await addDoc(collection(db, "products"), newProduct);
+      return { id: docRef.id, ...newProduct };
     } catch (error) {
       console.error("Error adding product:", error);
+      return rejectWithValue("Something went wrong while adding product");
     }
-    const docRef = await addDoc(collection(db, "products"), newProduct);
-    return { id: docRef.id, ...newProduct };
   }
 );
 
