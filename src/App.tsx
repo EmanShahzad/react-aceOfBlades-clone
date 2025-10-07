@@ -18,7 +18,7 @@ import Login from "./components/login/Login";
 
 function App() {
   const dispatch = useAppDispatch();
-  let [view, setView] = useState<string>("login");
+  let [view, setView] = useState<string>("customer");
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -30,8 +30,11 @@ function App() {
 
       <NavBar view={view} setView={setView} />
       <Routes>
-        <Route path="/" element={<Login view={view} setView={setView} />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={<Login view={view} setView={setView} />}
+        />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product/:id" element={<ProductDetails />} />

@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 type NavBarProps = {
   view: string;
@@ -14,7 +17,7 @@ function NavBar({ view, setView }: NavBarProps) {
   useEffect(() => {
     if (location.pathname === "/adminView") {
       setView("admin");
-    } else if (location.pathname === "/") {
+    } else if (location.pathname === "/login") {
       setView("login");
     } else {
       setView("customer");
@@ -36,6 +39,23 @@ function NavBar({ view, setView }: NavBarProps) {
     const count = products.filter((p) => p.categoryId === category.id).length;
     return count;
   });
+
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem("user");
+      setView("login");
+      navigate("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
+  const isUserLoggedIn = (): boolean => {
+    const user = localStorage.getItem("user");
+    return !!user;
+  };
 
   return (
     <div
@@ -154,17 +174,29 @@ function NavBar({ view, setView }: NavBarProps) {
                   </button>
 
                   <ul className="dropdown-menu p-2">
-                    <li>
-                      <NavLink
-                        to={"/"}
-                        className="dropdown-item fs-italics"
-                        onClick={() => {
-                          setView("login");
-                        }}
-                      >
-                        Change Role
-                      </NavLink>
-                    </li>
+                    {isUserLoggedIn() ? (
+                      <li>
+                        <NavLink
+                          to={"/home"}
+                          className="dropdown-item fs-italics"
+                          onClick={handleLogout}
+                        >
+                          Sign out
+                        </NavLink>
+                      </li>
+                    ) : (
+                      <li>
+                        <NavLink
+                          to={"/login"}
+                          className="dropdown-item fs-italics"
+                          onClick={() => {
+                            setView("login");
+                          }}
+                        >
+                          Log In
+                        </NavLink>
+                      </li>
+                    )}
                   </ul>
                 </div>
 
@@ -200,13 +232,13 @@ function NavBar({ view, setView }: NavBarProps) {
                   <ul className="dropdown-menu p-2">
                     <li>
                       <NavLink
-                        to={"/"}
+                        to={"/login"}
                         className="dropdown-item fs-italics"
                         onClick={() => {
                           setView("login");
                         }}
                       >
-                        Login Page
+                        LogIn Page
                       </NavLink>
                     </li>
                   </ul>
@@ -235,13 +267,11 @@ function NavBar({ view, setView }: NavBarProps) {
                   <ul className="dropdown-menu p-2">
                     <li>
                       <NavLink
-                        to={"/"}
+                        to={"/login"}
                         className="dropdown-item fs-italics"
-                        onClick={() => {
-                          setView("login");
-                        }}
+                        onClick={handleLogout}
                       >
-                        Login Page
+                        Sign out
                       </NavLink>
                     </li>
                   </ul>

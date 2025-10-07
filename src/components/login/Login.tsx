@@ -8,57 +8,63 @@ type LoginProps = {
   view: string;
   setView: React.Dispatch<React.SetStateAction<string>>;
 };
-function Login({ setView, view }: LoginProps) {
+
+function Login({ setView }: LoginProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const docSnap = await getDoc(doc(db, "users", user.uid));
-        if (docSnap.exists()) {
-          const role = docSnap.data().role;
-          navigate(role === "admin" ? "/adminView" : "/home");
-        }
-      }
-    });
-    return () => unsubscribe();
-  }, [navigate]);
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setMessage("");
+    setLoading(true);
 
-    // Firebase Authentication
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user = userCredential.user;
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
-    // Get role from Firestore
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
+      if (!docSnap.exists()) {
+        setMessage("No user profile found!");
+        return;
+      }
+
       const role = docSnap.data().role;
+      localStorage.setItem("user", JSON.stringify({ uid: user.uid, role }));
 
       if (role === "admin") {
-        setMessage("Welcome Admin!");
         setView("admin");
-        console.log(view);
+        setMessage("Welcome Admin!");
         navigate("/adminView");
       } else if (role === "customer") {
-        setMessage("Welcome Customer!");
         setView("customer");
-        console.log(view);
-        navigate("/home");
+        setMessage("Welcome Customer!");
+        navigate("/");
       } else {
         setMessage("Role not defined!");
       }
-    } else {
-      setMessage("No user profile found!");
+    } catch (error: any) {
+      // ✅ Handle common Firebase errors
+      if (error.code === "auth/user-not-found") {
+        setMessage("No user found with this email.");
+      } else if (error.code === "auth/wrong-password") {
+        setMessage("Wrong password. Try again.");
+      } else if (error.code === "auth/invalid-email") {
+        setMessage("Invalid email format.");
+      } else {
+        setMessage("Login failed. Please try again.");
+      }
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,6 +74,7 @@ function Login({ setView, view }: LoginProps) {
         <div className="col-md-4">
           <div className="card shadow p-4">
             <h3 className="text-center mb-3">Login</h3>
+
             <form onSubmit={handleLogin}>
               <div className="mb-3">
                 <label className="form-label">Email</label>
@@ -79,6 +86,7 @@ function Login({ setView, view }: LoginProps) {
                   required
                 />
               </div>
+
               <div className="mb-3">
                 <label className="form-label">Password</label>
                 <input
@@ -89,10 +97,16 @@ function Login({ setView, view }: LoginProps) {
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-dark w-100">
-                Login
+
+              <button
+                type="submit"
+                className="btn btn-dark w-100"
+                disabled={loading}
+              >
+                {loading ? "Logging in..." : "Login"}
               </button>
             </form>
+
             {message && (
               <p className="mt-3 text-center text-danger">{message}</p>
             )}

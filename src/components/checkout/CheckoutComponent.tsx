@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from "react";
 import { addOrder } from "../../redux/features/order/OrderSlice";
 import { removeFromCart, resetCart } from "../../redux/features/cart/CartSlice";
 import { CheckoutState } from "../../types/checkout";
+import { useNavigate } from "react-router-dom";
 
 function CheckoutComponent() {
   const dispatch = useAppDispatch();
@@ -25,6 +26,11 @@ function CheckoutComponent() {
 
   const handleChange = (value: string) => {
     dispatch(setShipping(value));
+  };
+
+  const isUserLoggedIn = (): boolean => {
+    const user = localStorage.getItem("user");
+    return !!user;
   };
 
   const countTotal = () => {
@@ -66,20 +72,26 @@ function CheckoutComponent() {
     }
   }, []);
 
+  const navigate = useNavigate();
+
   const submitForm = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", checkoutData);
-    dispatch(addOrder())
-      .unwrap()
-      .then((orderId) => {
-        console.log("Order placed successfully with ID:", orderId);
-        dispatch(resetCart());
-      })
-      .catch((err) => {
-        if (err !== "Cart is empty") {
-          console.error("Order failed:", err);
-        }
-      });
+    if (isUserLoggedIn()) {
+      console.log("Form submitted:", checkoutData);
+      dispatch(addOrder())
+        .unwrap()
+        .then((orderId) => {
+          console.log("Order placed successfully with ID:", orderId);
+          dispatch(resetCart());
+        })
+        .catch((err) => {
+          if (err !== "Cart is empty") {
+            console.error("Order failed:", err);
+          }
+        });
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <section>
