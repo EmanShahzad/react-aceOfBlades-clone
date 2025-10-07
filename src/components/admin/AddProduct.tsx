@@ -20,12 +20,23 @@ function AddProduct(props: {
     images: [],
   });
 
-  const manageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const manageInput = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     if (name === "stock") {
       const numValue = Number(value);
-      if (numValue <= 0) console.log("negative stock found dont add");
-      return;
+      if (numValue <= 0) {
+        console.log("negative stock found dont add");
+        return;
+      } else {
+        setNewItem((prev: ProductState) => {
+          return {
+            ...prev,
+            stock: numValue,
+          };
+        });
+      }
     }
     if (name === "image-address") {
       setNewItem((prev: ProductState) => {
@@ -38,7 +49,7 @@ function AddProduct(props: {
       setNewItem((prev: ProductState) => {
         return {
           ...prev,
-          [name]: name === "stock" ? Number(value) : value,
+          [name]: value,
         };
       });
     }
@@ -77,21 +88,27 @@ function AddProduct(props: {
             </label>
           </div>
           <div className="col-sm-6 form-floating">
-            <input
-              type="text"
-              id="category-id"
-              className="form-control"
-              required
-              name="categoryId"
-              placeholder="Category Id *"
-              onChange={manageInput}
-            />
-            <label htmlFor="categoryId" style={{ paddingLeft: "20px" }}>
-              Category Id
-              <span className="fw-bold" style={{ color: "red" }}>
-                *
-              </span>
-            </label>
+            <div className="col-md-4 d-flex flex-column input-group border rounded-1">
+              <select
+                id="categoryId"
+                name="categoryId"
+                required
+                defaultValue="Category"
+                className="form-control form-select border-0 flex-end mx-1 py-3 dropdown-center"
+                style={{ width: "97%" }}
+                onChange={manageInput}
+              >
+                <option value="Category">Select Category</option>
+                <hr className="dropdown-divider"></hr>
+                <option value="folding">folding</option>
+                <option value="fixed-blade">fixed-blade</option>
+                <option value="uncategorized">uncategorized</option>
+                <option value="kitchen">kitchen</option>
+                <option value="collectors">collectors</option>
+                <option value="straight-razors">straight-razors</option>
+                <option value="knife-care">knife-care</option>
+              </select>
+            </div>
           </div>
           <div className="col-sm-6 form-floating">
             <input

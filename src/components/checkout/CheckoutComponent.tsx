@@ -4,7 +4,6 @@ import { updateField } from "../../redux/features/checkout/CheckoutSlice";
 import React, { useEffect, useRef } from "react";
 import { addOrder } from "../../redux/features/order/OrderSlice";
 import { removeFromCart, resetCart } from "../../redux/features/cart/CartSlice";
-import { error } from "console";
 import { CheckoutState } from "../../types/checkout";
 
 function CheckoutComponent() {
@@ -254,7 +253,6 @@ function CheckoutComponent() {
                       *
                     </span>
                   </span>
-
                   <select
                     id="province"
                     required

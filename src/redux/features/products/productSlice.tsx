@@ -30,8 +30,10 @@ export const addProduct = createAsyncThunk(
   "products/addProduct",
   async (newProduct: Omit<ProductState, "id">, { rejectWithValue }) => {
     try {
+      console.log("adding in redux hello");
       // 🔹 Check stock
       if (newProduct.stock <= 0) {
+        console.log("rejected");
         return rejectWithValue("Stock cannot be negative or zero!");
       }
 
@@ -119,6 +121,7 @@ export const productSlice = createSlice({
       return action.payload;
     });
     builder.addCase(addProduct.fulfilled, (state, action) => {
+      console.log("done added!");
       state.push(action.payload);
     });
     builder.addCase(deleteProduct.fulfilled, (state, action) => {

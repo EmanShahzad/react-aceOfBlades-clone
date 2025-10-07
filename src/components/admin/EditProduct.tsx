@@ -35,7 +35,9 @@ function EditProduct(props: {
       setNewItem(props.item);
     }
   }, [props.item]);
-  const manageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const manageInput = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     if (name === "stock") {
       if (value < "0") {
@@ -95,22 +97,27 @@ function EditProduct(props: {
             </label>
           </div>
           <div className="col-sm-6 form-floating">
-            <input
-              type="text"
-              id="category-id"
-              className="form-control"
-              required
-              name="categoryId"
-              placeholder="Category Id *"
-              defaultValue={props.item.categoryId}
-              onChange={manageInput}
-            />
-            <label htmlFor="categoryId" style={{ paddingLeft: "20px" }}>
-              Category Id
-              <span className="fw-bold" style={{ color: "red" }}>
-                *
-              </span>
-            </label>
+            <div className="col-md-4 d-flex flex-column input-group border rounded-1">
+              <select
+                id="categoryId"
+                name="categoryId"
+                required
+                defaultValue={props.item.categoryId}
+                className="form-control form-select border-0 flex-end mx-1 py-3 dropdown-center"
+                style={{ width: "97%" }}
+                onChange={manageInput}
+              >
+                <option value="Category">Select Category</option>
+                <hr className="dropdown-divider"></hr>
+                <option value="folding">folding</option>
+                <option value="fixed-blade">fixed-blade</option>
+                <option value="uncategorized">uncategorized</option>
+                <option value="kitchen">kitchen</option>
+                <option value="collectors">collectors</option>
+                <option value="straight-razors">straight-razors</option>
+                <option value="knife-care">knife-care</option>
+              </select>
+            </div>
           </div>
           <div className="col-sm-6 form-floating">
             <input
